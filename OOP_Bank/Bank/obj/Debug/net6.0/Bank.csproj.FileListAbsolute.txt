@@ -1,0 +1,12 @@
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\bin\Debug\net6.0\Bank.deps.json
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\bin\Debug\net6.0\Bank.dll
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\bin\Debug\net6.0\Bank.pdb
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.AssemblyInfoInputs.cache
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.AssemblyInfo.cs
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.csproj.CoreCompileInputs.cache
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.sourcelink.json
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.dll
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\refint\Bank.dll
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\Bank.pdb
+C:\Users\JesúsNavarroRomero\source\repos\OOP_Bank\Bank\obj\Debug\net6.0\ref\Bank.dll
