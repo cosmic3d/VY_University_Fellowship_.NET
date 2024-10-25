@@ -1,0 +1,15 @@
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\bin\Debug\net6.0\BankAccountPractice.exe
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.AssemblyInfoInputs.cache
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.AssemblyInfo.cs
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.csproj.CoreCompileInputs.cache
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.dll
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\refint\BankAccountPractice.dll
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.pdb
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\bin\Debug\net6.0\BankAccountPractice.deps.json
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\bin\Debug\net6.0\BankAccountPractice.runtimeconfig.json
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\bin\Debug\net6.0\BankAccountPractice.dll
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\bin\Debug\net6.0\BankAccountPractice.pdb
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.genruntimeconfig.cache
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\ref\BankAccountPractice.dll
+C:\Users\JesúsNavarroRomero\source\repos\BankAccountPractice\BankAccountPractice\obj\Debug\net6.0\BankAccountPractice.sourcelink.json
