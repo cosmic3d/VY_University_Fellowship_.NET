@@ -1,6 +1,6 @@
 ﻿namespace Bank
 {
-    public abstract class Bank<T> where T : class
+    public abstract class Bank<TClient> where TClient : class
     {
         public static int AccountNumber_idx = 0;
         protected Random Random = new(DateTime.Now.Millisecond);
@@ -11,7 +11,7 @@
         protected abstract int MaxOutcome { get; set; }
         protected abstract int MinOutcome { get; set; }
         protected abstract char Coin { get; }
-        protected abstract List<T> Clients { get; }
+        protected abstract List<TClient> Clients { get; }
 
         public abstract void AddClient();
 
@@ -68,7 +68,7 @@
         {
             int controlCode = Random.Next(0, 100);
 
-            return $"ES{controlCode:D2} {CodigoEntidadFinanciera} {CodigoOficinaFinanciera} {controlCode:D2} {IBAN_idx++:D10}";
+            return $"ES{controlCode:D2}{CodigoEntidadFinanciera}{CodigoOficinaFinanciera}{controlCode:D2}{IBAN_idx++:D10}";
         }
 
         public override void AddClient() => Clients.Add(new SpanishClient(this));
@@ -98,7 +98,7 @@
         public SpanishClient? GetClientByIBAN(string IBAN) {
             foreach (SpanishClient client in Clients)
             {
-                if (client.Account.GetAccountNumber() == IBAN)
+                if (client.Account?.GetAccountNumber() == IBAN)
                 {
                     return client;
                 }

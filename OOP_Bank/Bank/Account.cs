@@ -69,36 +69,53 @@ namespace Bank
 
         public override void ShowBalance()
         {
-            Console.WriteLine($"Your balance is {Balance}");
+            Console.WriteLine($"Your current balance is {Balance:0.00}{Client.Bank.GetCoin()}");
         }
 
         public override void ShowTransactions()
         {
+            if (Transactions.Count == 0)
+            {
+                Console.WriteLine("No transactions found");
+                return;
+            }
             foreach (var transaction in Transactions)
             {
-                Console.WriteLine($"{transaction.Item1} - {transaction.Item2}");
+                Console.WriteLine($"{transaction.Item1} - {transaction.Item2:0.00}{Client.Bank.GetCoin()}");
             }
         }
 
         public override void ShowIncome()
         {
+            bool incomeFound = false;
             foreach (var transaction in Transactions)
             {
                 if (transaction.Item2 > 0)
                 {
-                    Console.WriteLine($"{transaction.Item1} - {transaction.Item2}");
+                    incomeFound = true;
+                    Console.WriteLine($"{transaction.Item1} - {transaction.Item2:0.00}{Client.Bank.GetCoin()}");
                 }
+            }
+            if (!incomeFound)
+            {
+                Console.WriteLine("No incomes found");
             }
         }
 
         public override void ShowOutcome()
         {
+            bool outcomeFound = false;
             foreach (var transaction in Transactions)
             {
                 if (transaction.Item2 < 0)
                 {
-                    Console.WriteLine($"{transaction.Item1} - {transaction.Item2}");
+                    outcomeFound = true;
+                    Console.WriteLine($"{transaction.Item1} - {transaction.Item2:0.00}{Client.Bank.GetCoin()}");
                 }
+            }
+            if (!outcomeFound)
+            {
+                Console.WriteLine("No outcomes found");
             }
         }
     }

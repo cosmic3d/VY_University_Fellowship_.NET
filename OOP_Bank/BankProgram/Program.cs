@@ -12,10 +12,10 @@ catch (Exception ex)
     return;
 }
 
-string parentPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+string? parentPath = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.Parent?.FullName ?? Directory.GetCurrentDirectory();
 string filePath = Path.Combine(parentPath, "ClientInfo.txt");
 Console.WriteLine($"Writing client information to {filePath}...");
-using (StreamWriter writer = new StreamWriter(filePath, false)) // 'false' indica que se sobrescribirá el archivo
+using (StreamWriter writer = new StreamWriter(filePath, false)) // 'false' indica que se sobrescribirá el archivo en cada ejecución
 {
     for (int i = 0; i < 10; i++)
     {

@@ -11,7 +11,7 @@ namespace Bank
     {
         public ConsoleKey ContinueKey = ConsoleKey.Enter, ExitKey = ConsoleKey.Escape;
         private SpanishBank Bank { get; }
-        private SpanishClient? Client { get; set; }
+        private SpanishClient? ClientSession { get; set; }
         public SpanishBankMenu(SpanishBank bank)
         {
             Bank = bank;
@@ -31,37 +31,104 @@ namespace Bank
 
         private void MoneyIncome()
         {
-            throw new NotImplementedException();
+            Console.Write("Insert the amount of money income: ");
+            string? money_income = Console.ReadLine()?.Replace(".", ",");
+            decimal n_money_income = 0m;
+            bool success_income = decimal.TryParse(money_income, out n_money_income);
+            if (success_income &&
+                n_money_income > 0 &&
+                n_money_income <= ClientSession?.Bank.GetMaxIncome() &&
+                n_money_income >= ClientSession?.Bank.GetMinIncome()
+               )
+            {
+                ClientSession?.AddIncome(n_money_income);
+                Console.WriteLine($"You have succesfully added {n_money_income:0.00}{Bank.GetCoin()} to your account");
+                ClientSession?.ShowBalance();
+            }
+            else
+            {
+                Console.Write("ERROR: ");
+                if (!success_income)
+                {
+                    Console.WriteLine("Invalid input format");
+                }
+                else if (n_money_income <= 0)
+                {
+                    Console.WriteLine("The amount of money must be greater than 0");
+                }
+                else if (n_money_income > ClientSession?.Bank.GetMaxIncome())
+                {
+                    Console.WriteLine($"The amount of money must be less than {ClientSession?.Bank.GetMaxIncome()}{Bank.GetCoin()}");
+                }
+                else if (n_money_income < ClientSession?.Bank.GetMinIncome())
+                {
+                    Console.WriteLine($"The amount of money must be greater than {ClientSession?.Bank.GetMinIncome()}{Bank.GetCoin()}");
+                }
+            }
         }
         private void MoneyOutcome()
         {
-            throw new NotImplementedException();
+            Console.Write("Insert the amount of money outcome: ");
+            string? money_outcome = Console.ReadLine()?.Replace(".", ",");
+            decimal n_money_outcome = 0;
+            bool success_outcome = decimal.TryParse(money_outcome, out n_money_outcome);
+            if (success_outcome &&
+                ClientSession?.Account?.GetBalance() >= n_money_outcome &&
+                n_money_outcome <= ClientSession?.Bank.GetMaxOutcome() &&
+                n_money_outcome >= ClientSession?.Bank.GetMinOutcome()
+               )
+            {
+                ClientSession?.AddOutcome(n_money_outcome);
+                Console.WriteLine($"You have succesfully withdrawn {n_money_outcome:0.00}{Bank.GetCoin()} to your account");
+                ClientSession?.ShowBalance();
+            }
+            else
+            {
+                Console.Write("ERROR: ");
+                if (!success_outcome)
+                {
+                    Console.WriteLine("Invalid input format");
+                }
+                else if (ClientSession?.Account?.GetBalance() < n_money_outcome)
+                {
+                    Console.WriteLine("You don't have enough money in your account");
+                    ClientSession?.ShowBalance();
+                }
+                else if (n_money_outcome > ClientSession?.Bank.GetMaxOutcome())
+                {
+                    Console.WriteLine($"The amount of money must be less than {ClientSession?.Bank.GetMaxOutcome()}{Bank.GetCoin()}");
+                }
+                else if (n_money_outcome < ClientSession?.Bank.GetMinOutcome())
+                {
+                    Console.WriteLine($"The amount of money must be greater than {ClientSession?.Bank.GetMinOutcome()}{Bank.GetCoin()}");
+                }
+            }
         }
 
 
         private void ListAllMovements()
         {
-            throw new NotImplementedException();
+            ClientSession?.ShowTransactions();
         }
 
         private void ListIncomes()
         {
-            throw new NotImplementedException();
+            ClientSession?.ShowIncome();
         }
 
 
         private void ListOutcomes()
         {
-            throw new NotImplementedException();
+            ClientSession?.ShowOutcome();
         }
 
         private void ShowCurrentMoney()
         {
-            throw new NotImplementedException();
+            ClientSession?.ShowBalance();
         }
         private void ExitProgram()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void RunMenu()
@@ -77,6 +144,8 @@ namespace Bank
                 success = int.TryParse(Console.ReadLine(), out option);
                 if (success)
                 {
+                    if (option == GetMethodId(ExitProgram))
+                        break;
                     ExecuteMethod(option);
                 }
                 else
@@ -86,18 +155,18 @@ namespace Bank
                 ConsoleKeyInfo choice = InputChoice(ContinueKey, ExitKey);
                 if (choice.Key == ExitKey)
                 {
-
+                    ClientSession?.ShowBalance();
                     break;
                 }
 
-            } while (option != GetMethodId(ExitProgram));
+            } while (true);
         }
 
         private ConsoleKeyInfo InputChoice(ConsoleKey continue_key, ConsoleKey exit_key)
         {
             ConsoleKeyInfo consoleKey = new();
             Console.WriteLine($"Use {continue_key.ToString().ToUpper()} to continue");
-            Console.WriteLine($"Use {exit_key.ToString().ToUpper()} to exit the program");
+            Console.Write($"Use {exit_key.ToString().ToUpper()} to exit the program");
             do
             {
                 consoleKey = Console.ReadKey(true); // true to prevent keys from being shown
@@ -174,7 +243,7 @@ namespace Bank
                 }
 
             } while (account == null);
-            Client = account.GetClient() as SpanishClient;
+            ClientSession = account.GetClient();
         }
     }
 }

@@ -46,57 +46,32 @@ namespace Bank
 
         public override void ShowBalance()
         {
-            Console.WriteLine($"Your balance is {Account?.GetBalance():0.00}");
+            Account?.ShowBalance();
         }
 
         public override void AddIncome(decimal income)
         {
-            if (income < 0)
-            {
-                Console.WriteLine("Income can't be negative");
-                return;
-            }
-            if (income > Bank.GetMaxIncome())
-            {
-                Console.WriteLine($"Income can't be more than {Bank.GetMaxIncome()}");
-                return;
-            }
-            if (income < Bank.GetMinIncome())
-            {
-                Console.WriteLine($"Income can't be less than {Bank.GetMinIncome()}");
-                return;
-            }
-            Account.AddIncome(income);
+            Account?.AddIncome(income);
         }
 
         public override void AddOutcome(decimal outcome)
         {
-            if (outcome > Bank.GetMaxOutcome())
-            {
-                Console.WriteLine($"Outcome can't be more than {Bank.GetMaxOutcome()}");
-                return;
-            }
-            if (outcome < Bank.GetMinOutcome())
-            {
-                Console.WriteLine($"Outcome can't be less than {Bank.GetMinOutcome()}");
-                return;
-            }
-            Account.AddOutcome(outcome);
+            Account?.AddOutcome(outcome);
         }
 
         public override void ShowTransactions()
         {
-            Account.ShowTransactions();
+            Account?.ShowTransactions();
         }
 
         public override void ShowIncome()
         {
-            Account.ShowIncome();
+            Account?.ShowIncome();
         }
 
         public override void ShowOutcome()
         {
-            Account.ShowOutcome();
+            Account?.ShowOutcome();
         }
 
         public override string GetClientInfo()
@@ -104,8 +79,8 @@ namespace Bank
             string str = "";
             str += $"Client ID: {Id}\n";
             str += $"Bank: {Bank.Name}\n";
-            str += $"Account number: {Account.GetAccountNumber()} \n";
-            str += $"Account pin: {Account.GetAccountPin()} \n\n";
+            str += $"Account number: {Account?.GetAccountNumber()} \n";
+            str += $"Account pin: {Account?.GetAccountPin()} \n\n";
             return str;
         }
         protected override SpanishAccount CreateAccount()
