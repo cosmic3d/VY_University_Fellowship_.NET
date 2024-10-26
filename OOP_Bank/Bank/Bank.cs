@@ -9,6 +9,7 @@
         protected abstract int MinIncome { get; set; }
         protected abstract int MaxOutcome { get; set; }
         protected abstract int MinOutcome { get; set; }
+        protected abstract char Coin { get; }
         protected abstract List<Client> Clients { get; }
 
         public abstract void AddClient();
@@ -17,11 +18,10 @@
         public abstract int GetMaxOutcome();
         public abstract int GetMinIncome();
         public abstract int GetMaxIncome();
+        public abstract char GetCoin();
         public abstract string GetName();
 
         public int GetAccountNumberIdx() => AccountNumber_idx++;
-
-        public abstract Client? GetClient(int id);
     }
 
     public class SpanishBank : Bank
@@ -33,6 +33,7 @@
         protected override int MinIncome { get; set; }
         protected override int MaxOutcome { get; set; }
         protected override int MinOutcome { get; set; }
+        protected override char Coin { get; }
         protected override List<Client> Clients { get; } = new List<Client>();
 
         public string CodigoEntidadFinanciera { get; }
@@ -45,6 +46,7 @@
             MinIncome = 5;
             MaxOutcome = 3000;
             MinOutcome = 5;
+            Coin = '€';
             CodigoEntidadFinanciera = "1234";
             CodigoOficinaFinanciera = "5678";
         }
@@ -56,6 +58,7 @@
             MinIncome = minIncome;
             MaxOutcome = maxOutcome;
             MinOutcome = minOutcome;
+            Coin = '€';
             CodigoEntidadFinanciera = Check4DigitNumber(codigoEntidadFinanciera);
             CodigoOficinaFinanciera = Check4DigitNumber(codigoOficinaFinanciera);
         }
@@ -78,10 +81,32 @@
         public override int GetMinIncome() => MinIncome;
         public override int GetMaxIncome() => MaxIncome;
         public override string GetName() => Name;
+        public override char GetCoin() => Coin;
 
-        public override Client? GetClient(int id)
+
+        //get client by id
+        public SpanishClient? GetClientById(int id)
         {
-            return Clients.Find(client => client.Id == id);
+            foreach (SpanishClient client in Clients)
+            {
+                if (client.Id == id)
+                {
+                    return client;
+                }
+            }
+            return null;
+        }
+
+        //get client by IBAN
+        public SpanishClient? GetClientByIBAN(string IBAN) {
+            foreach (SpanishClient client in Clients)
+            {
+                if (client.Account.GetAccountNumber() == IBAN)
+                {
+                    return client;
+                }
+            }
+            return null;
         }
 
         private string Check4DigitNumber(string str)

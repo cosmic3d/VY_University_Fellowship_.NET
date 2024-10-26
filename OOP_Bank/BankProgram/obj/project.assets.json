@@ -5,6 +5,9 @@
       "Bank/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Menu": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Bank.dll": {}
         },
@@ -38,8 +41,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Bank >= 1.0.0",
-      "Menu >= 1.0.0"
+      "Bank >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -72,9 +74,6 @@
           "projectReferences": {
             "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Bank\\Bank.csproj": {
               "projectPath": "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Bank\\Bank.csproj"
-            },
-            "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Menu\\Menu.csproj": {
-              "projectPath": "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Menu\\Menu.csproj"
             }
           }
         }

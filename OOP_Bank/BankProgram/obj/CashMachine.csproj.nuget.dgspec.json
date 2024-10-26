@@ -31,9 +31,6 @@
             "projectReferences": {
               "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Bank\\Bank.csproj": {
                 "projectPath": "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Bank\\Bank.csproj"
-              },
-              "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Menu\\Menu.csproj": {
-                "projectPath": "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Menu\\Menu.csproj"
               }
             }
           }
@@ -96,7 +93,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Menu\\Menu.csproj": {
+                "projectPath": "C:\\Users\\JesúsNavarroRomero\\source\\repos\\VY_University_Fellowship_.NET\\OOP_Bank\\Menu\\Menu.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

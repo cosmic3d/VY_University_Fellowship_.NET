@@ -15,8 +15,19 @@
         }
       },
       "Bank/1.0.0": {
+        "dependencies": {
+          "Menu": "1.0.0"
+        },
         "runtime": {
           "Bank.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Menu/1.0.0": {
+        "runtime": {
+          "Menu.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -31,6 +42,11 @@
       "sha512": ""
     },
     "Bank/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Menu/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

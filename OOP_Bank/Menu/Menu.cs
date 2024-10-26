@@ -19,7 +19,6 @@ namespace Menu
 
         public void ShowMenu()
         {
-            Console.WriteLine("Seleccione una opción:");
             foreach (var method in Methods)
             {
                 Console.WriteLine($"{method.Id}: {method.Description}");
@@ -37,6 +36,8 @@ namespace Menu
                 Console.WriteLine("Opción inválida.");
             }
         }
+
+        public int GetMenuLength() => Methods.Count;
     }
 
     public class MenuMethod

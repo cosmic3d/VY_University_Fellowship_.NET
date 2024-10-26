@@ -11,5 +11,20 @@ catch (Exception ex)
     return;
 }
 
-SpanishClient spanishClient = new SpanishClient(spanishBank);
-spanishClient.ShowClientInfo();
+//create 10 clients and print their info
+for (int i = 0; i < 10; i++)
+{
+    spanishBank.AddClient();
+}
+for (int i = 0; i < 10; i++)
+{
+    SpanishClient? client = spanishBank.GetClientById(i);
+    if (client != null)
+    {
+        client.ShowClientInfo();
+    }
+}
+
+SpanishBankMenu bankMenu = new SpanishBankMenu(spanishBank);
+
+bankMenu.RunMenu();

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bank\Bank.csproj" />
-    <ProjectReference Include="..\Menu\Menu.csproj" />
   </ItemGroup>
 
 </Project>
