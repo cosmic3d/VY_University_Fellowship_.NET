@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    public abstract class Account<T> where T : class
+    public abstract class Account<TClient>
+    where TClient : class
     {
-        protected T Client { get; }
+        protected TClient Client { get; }
         protected decimal Balance { get; set; }
         protected string? AccountNumber { get; set; }
         protected string? AccountPin { get; set; }
         protected List<Tuple<DateTime, decimal>> Transactions { get; }
 
-        protected Account(T client)
+        protected Account(TClient client)
         {
             Client = client;
             Balance = 0;
@@ -26,7 +27,7 @@ namespace Bank
         public abstract decimal GetBalance();
         public abstract string? GetAccountNumber();
         public abstract string? GetAccountPin();
-        public abstract T GetClient();
+        public abstract TClient GetClient();
         public abstract void ShowBalance();
         public abstract void ShowTransactions();
         public abstract void ShowIncome();

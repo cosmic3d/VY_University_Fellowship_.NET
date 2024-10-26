@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    public abstract class Client<T> where T : class
+    public abstract class Client<TAccount, TBank>
     {
         private static int Id_idx = 0;
 
         public int Id { get; }
-        internal Bank<Client<T>> ClientBank { get; }
-        internal T? ClientAccount { get; }
+        internal TBank ClientBank { get; }
+        internal TAccount? ClientAccount { get; }
 
-        protected Client(Bank<Client<T>> bank)
+        protected Client(TBank bank)
         {
             Id = Id_idx++;
             ClientBank = bank;
@@ -28,14 +28,15 @@ namespace Bank
         public abstract void ShowOutcome();
         public abstract string GetClientInfo();
 
-        protected abstract T CreateAccount();
+        protected abstract TAccount CreateAccount();
     }
 
 
-    public class SpanishClient : Client<SpanishAccount>
+
+    public class SpanishClient : Client<SpanishAccount, SpanishBank>
     {
         internal SpanishBank Bank { get; }
-        internal SpanishAccount Account { get; }
+        internal SpanishAccount? Account { get; }
 
         public SpanishClient(SpanishBank bank) : base(bank)
         {
@@ -45,7 +46,7 @@ namespace Bank
 
         public override void ShowBalance()
         {
-            Console.WriteLine($"Your balance is {Account.GetBalance():0.00}");
+            Console.WriteLine($"Your balance is {Account?.GetBalance():0.00}");
         }
 
         public override void AddIncome(decimal income)
