@@ -32,7 +32,7 @@ namespace Bank
         private void MoneyIncome()
         {
             Console.Write("Insert the amount of money income: ");
-            string? money_income = Console.ReadLine()?.Replace(".", ",");
+            string? money_income = Console.ReadLine()?.Replace(".", ",").Trim();
             decimal n_money_income = 0m;
             bool success_income = decimal.TryParse(money_income, out n_money_income);
             if (success_income &&
@@ -69,7 +69,7 @@ namespace Bank
         private void MoneyOutcome()
         {
             Console.Write("Insert the amount of money outcome: ");
-            string? money_outcome = Console.ReadLine()?.Replace(".", ",");
+            string? money_outcome = Console.ReadLine()?.Replace(".", ",").Trim();
             decimal n_money_outcome = 0;
             bool success_outcome = decimal.TryParse(money_outcome, out n_money_outcome);
             if (success_outcome &&
@@ -141,7 +141,7 @@ namespace Bank
                 ColorBanner();
                 ShowMenu();
                 Console.Write("\nChoose an option: ");
-                success = int.TryParse(Console.ReadLine(), out option);
+                success = int.TryParse(Console.ReadLine()?.Trim(), out option);
                 if (success)
                 {
                     if (option == GetMethodId(ExitProgram))
@@ -201,7 +201,7 @@ namespace Bank
             do
             {
                 Console.Write("Insert your account number: ");
-                string? account_number = Console.ReadLine();
+                string? account_number = Console.ReadLine()?.Trim();
 
                 if (account_number == null)
                 {
@@ -220,7 +220,7 @@ namespace Bank
                         do
                         {
                             Console.Write("Insert your account pin: ");
-                            account_pin = Console.ReadLine();
+                            account_pin = Console.ReadLine()?.Trim();
 
                             if (account_pin == null)
                             {
