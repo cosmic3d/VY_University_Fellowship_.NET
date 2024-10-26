@@ -9,22 +9,63 @@ namespace Bank
 {
     public class SpanishBankMenu : Menu.Menu
     {
+        public ConsoleKey ContinueKey = ConsoleKey.Enter, ExitKey = ConsoleKey.Escape;
         private SpanishBank Bank { get; }
+        private SpanishClient? Client { get; set; }
         public SpanishBankMenu(SpanishBank bank)
         {
             Bank = bank;
-            AddMethod(1, "Show client information", ShowClientInfo);
-            AddMethod(2, "Show balance", ShowBalance);
-            AddMethod(3, "Add income", AddIncome);
-            AddMethod(4, "Add outcome", AddOutcome);
-            AddMethod(5, "Show transactions", ShowTransactions);
-            AddMethod(6, "Show income", ShowIncome);
-            AddMethod(7, "Show outcome", ShowOutcome);
+            AddMethod(1, "Money Income", MoneyIncome);
+            AddMethod(2, "Money Outcome", MoneyOutcome);
+            AddMethod(3, "List all movements", ListAllMovements);
+            AddMethod(4, "List all incomes", ListIncomes);
+            AddMethod(5, "List all outcomes", ListOutcomes);
+            AddMethod(6, "Show current money", ShowCurrentMoney);
+            AddMethod(7, "Exit", ExitProgram);
+        }
+        public void AccessMenu()
+        {
+            CheckCredentials();
+            RunMenu();
+        }
+
+        private void MoneyIncome()
+        {
+            throw new NotImplementedException();
+        }
+        private void MoneyOutcome()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private void ListAllMovements()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ListIncomes()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private void ListOutcomes()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowCurrentMoney()
+        {
+            throw new NotImplementedException();
+        }
+        private void ExitProgram()
+        {
+            throw new NotImplementedException();
         }
 
         public void RunMenu()
         {
-            CheckCredentials();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int option;
             bool success;
@@ -34,17 +75,35 @@ namespace Bank
                 ShowMenu();
                 Console.Write("\nChoose an option: ");
                 success = int.TryParse(Console.ReadLine(), out option);
-                if (!success)
+                if (success)
                 {
-                    ConsoleKeyInfo consoleKey = new();
-                    Console.Write("Invalid option. Use ENTER to continue");
-                    do
-                    {
-                        consoleKey = Console.ReadKey();
-                    } while (consoleKey.Key != ConsoleKey.Enter);
+                    ExecuteMethod(option);
                 }
-                ExecuteMethod(option);
-            } while (option != GetMenuLength());
+                else
+                {
+                    Console.WriteLine("Invalid option");
+                }
+                ConsoleKeyInfo choice = InputChoice(ContinueKey, ExitKey);
+                if (choice.Key == ExitKey)
+                {
+
+                    break;
+                }
+
+            } while (option != GetMethodId(ExitProgram));
+        }
+
+        private ConsoleKeyInfo InputChoice(ConsoleKey continue_key, ConsoleKey exit_key)
+        {
+            ConsoleKeyInfo consoleKey = new();
+            Console.WriteLine($"Use {continue_key.ToString().ToUpper()} to continue");
+            Console.WriteLine($"Use {exit_key.ToString().ToUpper()} to exit the program");
+            do
+            {
+                consoleKey = Console.ReadKey(true); // true to prevent keys from being shown
+            } while (consoleKey.Key != continue_key && consoleKey.Key != exit_key);
+
+            return consoleKey;
         }
 
         private void ColorBanner()
@@ -115,40 +174,7 @@ namespace Bank
                 }
 
             } while (account == null);
-        }
-
-        private void AccessMenu()
-        {
-            CheckCredentials();
-            RunMenu();
-        }
-
-        public void ShowClientInfo()
-        {
-        }
-
-        public void ShowBalance()
-        {
-        }
-
-        public void AddIncome()
-        {
-        }
-
-        public void AddOutcome()
-        {
-        }
-
-        public void ShowTransactions()
-        {
-        }
-
-        public void ShowIncome()
-        {
-        }
-
-        public void ShowOutcome()
-        {
+            Client = account.GetClient() as SpanishClient;
         }
     }
 }

@@ -17,6 +17,12 @@ namespace Menu
             Methods.Add(new MenuMethod(id, description, method));
         }
 
+        public int GetMethodId(Action action)
+        {
+            MenuMethod? menuMethod = Methods.Find(m => m.Method == action);
+            return menuMethod?.Id ?? -1;
+        }
+
         public void ShowMenu()
         {
             foreach (var method in Methods)
@@ -33,7 +39,7 @@ namespace Menu
             }
             else
             {
-                Console.WriteLine("Opción inválida.");
+                Console.WriteLine("Invalid option");
             }
         }
 

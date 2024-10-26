@@ -6,28 +6,27 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    public abstract class Account
+    public abstract class Account<T> where T : class
     {
-        protected Client Client { get; }
+        protected T Client { get; }
         protected decimal Balance { get; set; }
-        protected string AccountNumber { get; set; }
-        protected string AccountPin { get; }
+        protected string? AccountNumber { get; set; }
+        protected string? AccountPin { get; set; }
         protected List<Tuple<DateTime, decimal>> Transactions { get; }
 
-        protected Account(Client client)
+        protected Account(T client)
         {
             Client = client;
             Balance = 0;
             Transactions = new List<Tuple<DateTime, decimal>>();
-            AccountPin = GeneratePin(); // PIN aleatorio
-            AccountNumber = $"{client.ClientBank.GetAccountNumberIdx().ToString():D10}";
         }
 
         public abstract void AddIncome(decimal income);
         public abstract void AddOutcome(decimal outcome);
         public abstract decimal GetBalance();
-        public abstract string GetAccountNumber();
-        public abstract string GetAccountPin();
+        public abstract string? GetAccountNumber();
+        public abstract string? GetAccountPin();
+        public abstract T GetClient();
         public abstract void ShowBalance();
         public abstract void ShowTransactions();
         public abstract void ShowIncome();
@@ -39,11 +38,12 @@ namespace Bank
         }
     }
 
-    public class SpanishAccount : Account
+    public class SpanishAccount : Account<SpanishClient>
     {
         public SpanishAccount(SpanishClient client) : base(client)
         {
             AccountNumber = client.Bank.GetIBAN(); // IBAN español
+            AccountPin = GeneratePin(); // PIN aleatorio
         }
 
         // Implementación de los métodos abstractos definidos en Account
@@ -62,8 +62,9 @@ namespace Bank
         }
 
         public override decimal GetBalance() => Balance;
-        public override string GetAccountNumber() => AccountNumber;
-        public override string GetAccountPin() => AccountPin;
+        public override string? GetAccountNumber() => AccountNumber;
+        public override string? GetAccountPin() => AccountPin;
+        public override SpanishClient GetClient() => Client;
 
         public override void ShowBalance()
         {

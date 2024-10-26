@@ -1,8 +1,9 @@
 ﻿namespace Bank
 {
-    public abstract class Bank
+    public abstract class Bank<T> where T : class
     {
         public static int AccountNumber_idx = 0;
+        protected Random Random = new(DateTime.Now.Millisecond);
 
         public abstract string Name { get; set; }
         protected abstract int MaxIncome { get; set; }
@@ -10,7 +11,7 @@
         protected abstract int MaxOutcome { get; set; }
         protected abstract int MinOutcome { get; set; }
         protected abstract char Coin { get; }
-        protected abstract List<Client> Clients { get; }
+        protected abstract List<T> Clients { get; }
 
         public abstract void AddClient();
 
@@ -24,7 +25,7 @@
         public int GetAccountNumberIdx() => AccountNumber_idx++;
     }
 
-    public class SpanishBank : Bank
+    public class SpanishBank : Bank<SpanishClient>
     {
         private static int IBAN_idx = 0;
 
@@ -34,7 +35,7 @@
         protected override int MaxOutcome { get; set; }
         protected override int MinOutcome { get; set; }
         protected override char Coin { get; }
-        protected override List<Client> Clients { get; } = new List<Client>();
+        protected override List<SpanishClient> Clients { get; } = new List<SpanishClient>();
 
         public string CodigoEntidadFinanciera { get; }
         public string CodigoOficinaFinanciera { get; }
@@ -65,16 +66,12 @@
 
         public string GetIBAN()
         {
-            Random random = new(DateTime.Now.Millisecond);
-            int controlCode = random.Next(0, 100);
+            int controlCode = Random.Next(0, 100);
 
             return $"ES{controlCode:D2} {CodigoEntidadFinanciera} {CodigoOficinaFinanciera} {controlCode:D2} {IBAN_idx++:D10}";
         }
 
-        public override void AddClient()
-        {
-            Clients.Add(new SpanishClient(this));
-        }
+        public override void AddClient() => Clients.Add(new SpanishClient(this));
 
         public override int GetMinOutcome() => MinOutcome;
         public override int GetMaxOutcome() => MaxOutcome;

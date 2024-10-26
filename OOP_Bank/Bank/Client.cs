@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    public abstract class Client
+    public abstract class Client<T> where T : class
     {
         private static int Id_idx = 0;
 
         public int Id { get; }
-        internal Bank ClientBank { get; }
-        internal Account? ClientAccount { get; }
+        internal Bank<Client<T>> ClientBank { get; }
+        internal T? ClientAccount { get; }
 
-        protected Client(Bank bank)
+        protected Client(Bank<Client<T>> bank)
         {
             Id = Id_idx++;
             ClientBank = bank;
@@ -26,14 +26,13 @@ namespace Bank
         public abstract void ShowTransactions();
         public abstract void ShowIncome();
         public abstract void ShowOutcome();
+        public abstract string GetClientInfo();
 
-        //public method for printing client information
-        abstract public void ShowClientInfo();
-
-        protected abstract Account CreateAccount();
+        protected abstract T CreateAccount();
     }
 
-    public class SpanishClient : Client
+
+    public class SpanishClient : Client<SpanishAccount>
     {
         internal SpanishBank Bank { get; }
         internal SpanishAccount Account { get; }
@@ -99,15 +98,15 @@ namespace Bank
             Account.ShowOutcome();
         }
 
-        public override void ShowClientInfo()
+        public override string GetClientInfo()
         {
-            Console.WriteLine($"Client ID: {Id}");
-            Console.WriteLine($"Bank: {Bank.Name}");
-            Console.WriteLine($"Account number: {Account.GetAccountNumber()}");
-            Console.WriteLine($"Account pin: {Account.GetAccountPin()}");
+            string str = "";
+            str += $"Client ID: {Id}\n";
+            str += $"Bank: {Bank.Name}\n";
+            str += $"Account number: {Account.GetAccountNumber()} \n";
+            str += $"Account pin: {Account.GetAccountPin()} \n\n";
+            return str;
         }
-
-        // Implementación del método abstracto para la cuenta
         protected override SpanishAccount CreateAccount()
         {
             return new SpanishAccount(this);
