@@ -64,5 +64,6 @@ else
     menu.MenuMask.Add(10);
     menu.MenuMask.Add(12);
 }
+menu.AddMethods();
 
 menu.RunMenuWorkerManagement();

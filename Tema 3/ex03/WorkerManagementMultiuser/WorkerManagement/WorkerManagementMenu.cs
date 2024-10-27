@@ -18,19 +18,6 @@ namespace WorkerManagement
         public List<Task> Tasks = new();
         public WorkerManagementMenu()
         {
-            AddMethod(1, "Register new IT worker", RegisterNewITWorker);
-            AddMethod(2, "Register new team", AddTeam);
-            AddMethod(3, "Register new task (unassigned to anyone)", AddTask);
-            AddMethod(4, "List all team names", ListAllTeamNames);
-            AddMethod(5, "List team members by team name", ListTeamMembersByTeamName);
-            AddMethod(6, "List unassigned tasks", ListUnassignedTasks);
-            AddMethod(7, "List task assignments by team name", ListTaskAssignmentsByTeamName);
-            AddMethod(8, "Assign IT worker to a team as manager", AssignITWorkerAsManager);
-            AddMethod(9, "Assign IT worker to a team as technician", AssignITWorkerAsTechnician);
-            AddMethod(10, "Assign task to IT worker", AssignTaskToITWorker);
-            AddMethod(11, "Unregister IT worker", UnregisterITWorker);
-            AddMethod(12, "Exit", ExitProgram);
-            AddMethod(13, "Change task status", ChangeTaskStatus); //Cambiamos de sitio para que no haya conflicto con el testing según el enunciado
             banner = @"
     ___  ___          ___                                          
     | |  | |          | |                                         
@@ -51,6 +38,23 @@ namespace WorkerManagement
             BackgroundColor = ConsoleColor.Cyan;
             FontColor = ConsoleColor.Black;
 
+        }
+
+        public void AddMethods()
+        {
+            AddMethod(1, "Register new IT worker", RegisterNewITWorker);
+            AddMethod(2, "Register new team", AddTeam);
+            AddMethod(3, "Register new task (unassigned to anyone)", AddTask);
+            AddMethod(4, "List all team names", ListAllTeamNames);
+            AddMethod(5, "List team members by team name", ListTeamMembersByTeamName);
+            AddMethod(6, "List unassigned tasks", ListUnassignedTasks);
+            AddMethod(7, "List task assignments by team name", ListTaskAssignmentsByTeamName);
+            AddMethod(8, "Assign IT worker to a team as manager", AssignITWorkerAsManager);
+            AddMethod(9, "Assign IT worker to a team as technician", AssignITWorkerAsTechnician);
+            AddMethod(10, "Assign task to IT worker", AssignTaskToITWorker);
+            AddMethod(11, "Unregister IT worker", UnregisterITWorker);
+            AddMethod(12, "Exit", ExitProgram);
+            AddMethod(13, "Change task status", ChangeTaskStatus); //Cambiamos de sitio para que no haya conflicto con el testing según el enunciado
         }
 
         public override void AddMethod(int id, string description, Action method)
