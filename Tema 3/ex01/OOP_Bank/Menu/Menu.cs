@@ -72,7 +72,7 @@ namespace Menu
             Console.WriteLine(banner);
         }
 
-        internal protected void AddMethod(int id, string description, Action method)
+        public virtual void AddMethod(int id, string description, Action method)
         {
             Methods.Add(new MenuMethod(id, description, method));
         }
@@ -106,7 +106,7 @@ namespace Menu
 
         public int GetMenuLength() => Methods.Count;
 
-        protected int GetInt(string requirement)
+        public int GetInt(string requirement)
         {
             Console.Write(requirement + ": ");
             int number;
@@ -118,7 +118,7 @@ namespace Menu
             return number;
         }
 
-        protected uint GetUint(string requirement)
+        public uint GetUint(string requirement)
         {
             Console.Write(requirement + ": ");
             uint number;
@@ -130,7 +130,7 @@ namespace Menu
             return number;
         }
 
-        protected string? GetString(string requirement)
+        public string? GetString(string requirement)
         {
             while (true)
             {
@@ -147,7 +147,7 @@ namespace Menu
             }
         }
 
-        protected DateTime GetDateTime(string requirement)
+        public DateTime GetDateTime(string requirement)
         {
             Console.Write(requirement + ": ");
             DateTime date;
