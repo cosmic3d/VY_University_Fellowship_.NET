@@ -3,7 +3,7 @@
     public abstract class Worker
     {
         protected static uint _idCounter = 0;
-        public uint Id { get; }
+        public uint Id;
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public DateTime BirthDate { get; private set; }
