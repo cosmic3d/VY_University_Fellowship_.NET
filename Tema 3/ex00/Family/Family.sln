@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyConsoleApp", "Family\FamilyConsoleApp.csproj", "{36CF946F-B97D-471E-9EEC-B8855DF29A67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyConsoleApp", "Family\FamilyConsoleApp.csproj", "{36CF946F-B97D-471E-9EEC-B8855DF29A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyClass", "FamilyClass\FamilyClass.csproj", "{862DA114-A6D1-48F5-9526-A37A47E97F53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyClass", "FamilyClass\FamilyClass.csproj", "{862DA114-A6D1-48F5-9526-A37A47E97F53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu", "..\..\ex01\OOP_Bank\Menu\Menu.csproj", "{9360E51B-0752-4388-8191-A67B14A4D54B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{862DA114-A6D1-48F5-9526-A37A47E97F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862DA114-A6D1-48F5-9526-A37A47E97F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862DA114-A6D1-48F5-9526-A37A47E97F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9360E51B-0752-4388-8191-A67B14A4D54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9360E51B-0752-4388-8191-A67B14A4D54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9360E51B-0752-4388-8191-A67B14A4D54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9360E51B-0752-4388-8191-A67B14A4D54B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

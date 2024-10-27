@@ -9,7 +9,6 @@ namespace FamilyConsoleApp
 {
     internal class MenuFamily : Menu.Menu
     {
-        public ConsoleKey ContinueKey = ConsoleKey.Enter, ExitKey = ConsoleKey.Escape;
         private Son Son;
 
         public MenuFamily(Son son)
@@ -18,36 +17,18 @@ namespace FamilyConsoleApp
             AddMethod(1, "Show Values", ShowFamilyFields);
             AddMethod(2, "Modify Values", SetFamilyFields);
             AddMethod(3, "Exit Program", ExitProgram);
+            banner = @" ___           _ _      
+| __|_ _ _ __ (_) |_  _ 
+| _/ _` | '  \| | | || |
+|_|\__,_|_|_|_|_|_|\_, |
+                   |__/ ";
+            BackgroundColor = ConsoleColor.DarkMagenta;
 
         }
 
         public void RunMenuFamily()
         {
-            int option;
-            bool success;
-            do
-            {
-                Console.Clear();
-                ShowMenu();
-                Console.Write("\nChoose an option: ");
-                success = int.TryParse(Console.ReadLine()?.Trim(), out option);
-                if (success)
-                {
-                    if (option == GetMethodId(ExitProgram))
-                        break;
-                    ExecuteMethod(option);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid option");
-                }
-                ConsoleKeyInfo choice = InputChoice(ContinueKey, ExitKey);
-                if (choice.Key == ExitKey)
-                {
-                    break;
-                }
-
-            } while (true);
+            RunMenu();
         }
         private void ShowFamilyFields()
         {
@@ -92,7 +73,7 @@ namespace FamilyConsoleApp
             Son.SetFamilyFields(grandpaId, grandpaName, grandpaMoney, fatherId, fatherName, fatherMoney, sonId, sonName, sonMoney);
         }
 
-        private void ExitProgram()
+        protected override void ExitProgram()
         {
             Console.WriteLine("Exiting Family program...");
         }
@@ -121,19 +102,6 @@ namespace FamilyConsoleApp
                     return input;
                 }
             }
-        }
-
-        private ConsoleKeyInfo InputChoice(ConsoleKey continue_key, ConsoleKey exit_key)
-        {
-            ConsoleKeyInfo consoleKey = new();
-            Console.WriteLine($"Use {continue_key.ToString().ToUpper()} to continue");
-            Console.Write($"Use {exit_key.ToString().ToUpper()} to exit the program");
-            do
-            {
-                consoleKey = Console.ReadKey(true); // true to prevent keys from being shown
-            } while (consoleKey.Key != continue_key && consoleKey.Key != exit_key);
-
-            return consoleKey;
         }
     }
 }

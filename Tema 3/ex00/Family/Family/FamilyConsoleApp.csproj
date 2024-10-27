@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,13 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ex01\OOP_Bank\Menu\Menu.csproj" />
     <ProjectReference Include="..\FamilyClass\FamilyClass.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Menu">
-      <HintPath>..\..\..\OOP_Bank\Menu\bin\Debug\net6.0\Menu.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

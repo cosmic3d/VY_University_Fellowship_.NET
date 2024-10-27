@@ -6,7 +6,11 @@
         protected string SonName { get; set; }
         private int SonMoney { get; set; }
 
-        public Son(int id, string name, int money, int fatherId, string fatherName, int fatherMoney, int grandpaId, string grandpaName, int grandpaMoney)
+        public Son(
+                    int id, string name, int money,
+                    int fatherId, string fatherName, int fatherMoney,
+                    int grandpaId, string grandpaName, int grandpaMoney
+                  )
         {
             GrandpaId = grandpaId;
             GrandpaName = grandpaName;
