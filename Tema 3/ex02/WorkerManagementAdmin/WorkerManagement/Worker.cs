@@ -4,10 +4,10 @@
     {
         protected static uint _idCounter = 0;
         internal protected uint Id;
-        protected string Name { get; set; }
-        protected string Surname { get; set; }
-        protected DateTime BirthDate { get; set; }
-        protected DateTime? LeavingDate { get; set; }
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public DateTime BirthDate { get; private set; }
+        public DateTime? LeavingDate { get; private set; }
 
         public Worker(string name, string surname, DateTime birthDate)
         {
@@ -16,5 +16,9 @@
             BirthDate = birthDate;
         }
 
+        public void UnregisterWorker(DateTime leavingDate)
+        {
+            LeavingDate = leavingDate;
+        }
     }
 }

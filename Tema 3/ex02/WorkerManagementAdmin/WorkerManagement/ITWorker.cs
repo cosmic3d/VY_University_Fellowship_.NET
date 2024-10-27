@@ -10,13 +10,13 @@ namespace WorkerManagement
     {
         public enum Levels
         {
-            Junior,
-            Medium,
-            Senior
+            junior,
+            medium,
+            senior
         }
         public uint YearsOfExperience { get; private set; }
         public List<string> TechKnowledges { get; } = new();
-        public Levels Level { get; private set; } = Levels.Junior;
+        public Levels Level { get; private set; } = Levels.junior;
 
         public ITWorker(string name, string surname, DateTime birthDate, uint yearsOfExperience, Levels level) : base(name, surname, birthDate)
         {
@@ -24,6 +24,8 @@ namespace WorkerManagement
                 throw new ArgumentException("Years of experience must be greater than 0");
             else if (yearsOfExperience > DateTime.Now.Year - birthDate.Year)
                 throw new ArgumentException("Years of experience must be less than the age of the worker");
+            else if (birthDate > DateTime.Now)
+                throw new ArgumentException("Birthdate cannot have place in the future");
             else if (DateTime.Now.Year - birthDate.Year < 18)
                 throw new ArgumentException("User must be at least 18 years old");
             else if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(surname))
@@ -33,7 +35,7 @@ namespace WorkerManagement
             SetLevel(level);
         }
 
-        public void SetLevel(Levels level) => Level = level == Levels.Senior && YearsOfExperience >= 5 ? level : Levels.Junior;
+        public void SetLevel(Levels level) => Level = level == Levels.senior && YearsOfExperience >= 5 ? level : Levels.junior;
 
         public void AddTechKnowledge(string techKnowledge)
         {

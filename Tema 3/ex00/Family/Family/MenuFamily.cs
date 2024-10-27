@@ -37,71 +37,23 @@ namespace FamilyConsoleApp
 
         private void SetFamilyFields()
         {
-            Console.WriteLine("Enter Grandpa Id:");
-            int grandpaId = GetInt();
-            string? grandpaName;
-            do
-            {
-                Console.WriteLine("Enter Grandpa Name:");
-                grandpaName = GetString();
-            } while (string.IsNullOrEmpty(grandpaName));
+            int grandpaId = GetInt("Enter Grandpa Id: ");
+            string? grandpaName = GetString("Enter Grandpa Name: ");
+            int grandpaMoney = GetInt("Enter Grandpa Money: ");
 
-            Console.WriteLine("Enter Grandpa Money:");
-            int grandpaMoney = GetInt();
-            Console.WriteLine("Enter Father Id:");
-            int fatherId = GetInt();
-            string? fatherName;
-            do
-            {
-                Console.WriteLine("Enter Father Name:");
-                fatherName = GetString();
-            } while (string.IsNullOrEmpty(fatherName));
+            int fatherId = GetInt("Enter Father Id: ");
+            string? fatherName = GetString("Enter Father Name: ");
+            int fatherMoney = GetInt("Enter Father Money: ");
 
-            Console.WriteLine("Enter Father Money:");
-            int fatherMoney = GetInt();
-            Console.WriteLine("Enter Son Id:");
-            int sonId = GetInt();
-            string? sonName;
-            do
-            {
-                Console.WriteLine("Enter Son Name:");
-                sonName = GetString();
-            } while (string.IsNullOrEmpty(sonName));
-
-            Console.WriteLine("Enter Son Money:");
-            int sonMoney = GetInt();
+            int sonId = GetInt("Enter Son Id: ");
+            string? sonName = GetString("Enter Son Name: ");
+            int sonMoney = GetInt("Enter Son Money: ");
             Son.SetFamilyFields(grandpaId, grandpaName, grandpaMoney, fatherId, fatherName, fatherMoney, sonId, sonName, sonMoney);
         }
 
         protected override void ExitProgram()
         {
             Console.WriteLine("Exiting Family program...");
-        }
-
-        private int GetInt()
-        {
-            int number;
-            while (!int.TryParse(Console.ReadLine(), out number))
-            {
-                Console.WriteLine("Invalid input. Please enter a number.");
-            }
-            return number;
-        }
-
-        private string? GetString()
-        {
-            while (true)
-            {
-                string? input = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Invalid input. Please enter a string.");
-                }
-                else
-                {
-                    return input;
-                }
-            }
         }
     }
 }

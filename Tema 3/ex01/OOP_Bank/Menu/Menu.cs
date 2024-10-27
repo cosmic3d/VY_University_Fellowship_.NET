@@ -105,6 +105,59 @@ namespace Menu
         }
 
         public int GetMenuLength() => Methods.Count;
+
+        protected int GetInt(string requirement)
+        {
+            Console.Write(requirement + ": ");
+            int number;
+            while (!int.TryParse(Console.ReadLine()?.Trim(), out number))
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.Write(requirement + ": ");
+            }
+            return number;
+        }
+
+        protected uint GetUint(string requirement)
+        {
+            Console.Write(requirement + ": ");
+            uint number;
+            while (!uint.TryParse(Console.ReadLine()?.Trim(), out number))
+            {
+                Console.WriteLine("Invalid input. Please enter a positive number.");
+                Console.Write(requirement + ": ");
+            }
+            return number;
+        }
+
+        protected string? GetString(string requirement)
+        {
+            while (true)
+            {
+                Console.Write(requirement + ": ");
+                string? input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Invalid input. Please enter a string.");
+                }
+                else
+                {
+                    return input;
+                }
+            }
+        }
+
+        protected DateTime GetDateTime(string requirement)
+        {
+            Console.Write(requirement + ": ");
+            DateTime date;
+            while (!DateTime.TryParse(Console.ReadLine()?.Trim(), out date))
+            {
+                Console.WriteLine("Invalid input. Please enter a date.");
+                Console.Write(requirement + ": ");
+            }
+            return date;
+        }
     }
 
     public class MenuMethod

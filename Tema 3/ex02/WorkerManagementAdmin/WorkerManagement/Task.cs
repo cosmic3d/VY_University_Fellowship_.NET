@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace WorkerManagement
 {
-    internal class Task
+    public class Task
     {
         public enum Statuses
         {
-            To_do,
-            Doing,
-            Done
+            to_do,
+            doing,
+            done
         }
         private static uint _idCounter = 0;
-        readonly uint Id;
+        public readonly uint Id;
         public string Description { get; set; }
         public string Technology { get; set; }
-        public Statuses Status { get; set; } = Statuses.To_do;
+        public Statuses Status { get; set; } = Statuses.to_do;
         public uint IdWorker { get; set; } = 0;
 
         public Task(string description, string technology)
@@ -37,7 +37,7 @@ namespace WorkerManagement
                 throw new ArgumentNullException("Worker must not be null");
             else if (!itworker.TechKnowledges.Contains(Technology))
                 throw new ArgumentException("Worker does not have the required knowledge for this task");
-            else if (Status == Statuses.Done)
+            else if (Status == Statuses.done)
                 throw new InvalidOperationException("Task is already done");
             IdWorker = itworker.Id;
         }
