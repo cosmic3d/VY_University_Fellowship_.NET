@@ -52,7 +52,7 @@ namespace WorkerManagement
         {
             RunMenu();
         }
-        private void RegisterNewITWorker()
+        public void RegisterNewITWorker()
         {
             try
             {
@@ -79,7 +79,7 @@ namespace WorkerManagement
         }
 
 
-        private void AddTeam()
+        public void AddTeam()
         {
             try
             {
@@ -91,7 +91,7 @@ namespace WorkerManagement
             }
         }
 
-        private void AddTeamToList(Team team) {
+        public void AddTeamToList(Team team) {
             foreach (var t in _teams)
             {
                 if (t.Name == team.Name)
@@ -102,7 +102,7 @@ namespace WorkerManagement
             _teams.Add(team);
         }
 
-        private void AddTask()
+        public void AddTask()
         {
             try
             {
@@ -114,7 +114,7 @@ namespace WorkerManagement
             }
         }
 
-        private void ListAllTeamNames()
+        public void ListAllTeamNames()
         {
             //print every team name along with a number in order with a foreach
             Console.WriteLine("Listing all team names");
@@ -124,7 +124,7 @@ namespace WorkerManagement
             }
         }
 
-        private void ListTeamMembersByTeamName()
+        public void ListTeamMembersByTeamName()
         {
             string teamName = GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
@@ -144,7 +144,7 @@ namespace WorkerManagement
             }
         }
 
-        private void ListUnassignedTasks()
+        public void ListUnassignedTasks()
         {
             foreach (var task in _tasks)
             {
@@ -155,7 +155,7 @@ namespace WorkerManagement
             }
         }
 
-        private void ListTaskAssignmentsByTeamName()
+        public void ListTaskAssignmentsByTeamName()
         {
             string teamName = GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
@@ -174,7 +174,7 @@ namespace WorkerManagement
             }
         }
 
-        private void AssignITWorkerAsManager()
+        public void AssignITWorkerAsManager()
         {
             string teamName = GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
@@ -199,7 +199,7 @@ namespace WorkerManagement
             }
         }
 
-        private void AssignITWorkerAsTechnician()
+        public void AssignITWorkerAsTechnician()
         {
             string teamName = GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
@@ -224,7 +224,7 @@ namespace WorkerManagement
             }
         }
 
-        private void AssignTaskToITWorker()
+        public void AssignTaskToITWorker()
         {
             ITWorker? itworker = _itworkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
             if (itworker == null)
@@ -248,7 +248,7 @@ namespace WorkerManagement
             }
         }
 
-        private void ChangeTaskStatus()
+        public void ChangeTaskStatus()
         {
             Task? task = _tasks.Find(t => t.Id == GetUint("Enter the ID of the task"));
             if (task == null)
@@ -259,7 +259,7 @@ namespace WorkerManagement
             task.SetStatus(GetStatus("Enter the new status of the task"));
         }
 
-        private void UnregisterITWorker()
+        public void UnregisterITWorker()
         {
             ITWorker? itworker = _itworkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
             if (itworker == null)
@@ -283,12 +283,12 @@ namespace WorkerManagement
             _itworkers.Remove(itworker);
         }
 
-        protected override void ExitProgram()
+        public override void ExitProgram()
         {
             Console.WriteLine("Exiting WorkerManagement program...");
         }
 
-        protected ITWorker.Levels GetLevel(string requirement)
+        public ITWorker.Levels GetLevel(string requirement)
         {
             Console.Write(requirement + ": ");
             while (true)
@@ -305,7 +305,7 @@ namespace WorkerManagement
             }
         }
 
-        protected Task.Statuses GetStatus(string requirement)
+        public Task.Statuses GetStatus(string requirement)
         {
             Console.Write(requirement + ": ");
             while (true)

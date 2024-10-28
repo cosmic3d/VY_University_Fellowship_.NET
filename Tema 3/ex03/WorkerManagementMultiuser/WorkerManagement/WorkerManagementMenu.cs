@@ -7,15 +7,43 @@ using System.Threading.Tasks;
 
 namespace WorkerManagement
 {
-    public class WorkerManagementMenu : Menu.Menu
+    public interface IWorkerManagement
     {
-        public bool isManager = false;
-        public bool isAdmin = false;
-        public ITWorker LoginAccount;
-        public List<int> MenuMask = new();
-        public List<ITWorker> ITWorkers = new();
-        public List<Team> Teams = new();
-        public List<Task> Tasks = new();
+        // Propiedades para almacenar listas de ITWorkers, Teams y Tasks
+        public Company Company { get; set; }
+
+        // Método principal para ejecutar el menú de gestión de trabajadores
+        void RunMenuWorkerManagement();
+
+        // Métodos relacionados con la gestión de trabajadores, equipos y tareas
+        void RegisterNewITWorker();
+        void AddTeam();
+        void AddTask();
+        void ListAllTeamNames();
+        void ListTeamMembersByTeamName();
+        void ListUnassignedTasks();
+        void ListTaskAssignmentsByTeamName();
+
+        // Métodos para asignaciones y cambios de estado
+        void AssignITWorkerAsManager();
+        void AssignITWorkerAsTechnician();
+        void AssignTaskToITWorker();
+        void ChangeTaskStatus();
+
+        // Métodos para la administración y remoción de trabajadores
+        void UnregisterITWorker();
+
+        // Método de salida del programa
+        void ExitProgram();
+
+        // Métodos auxiliares para obtener datos de nivel y estado (protected en clase, público en interfaz)
+        ITWorker.Levels GetLevel(string requirement);
+        Task.Statuses GetStatus(string requirement);
+    }
+    public class WorkerManagementMenu : Menu.Menu, IWorkerManagement
+    {
+        public ITWorker? SessionITWorker { get; set; }
+        public Company Company { get; set; } = new Company();
         public WorkerManagementMenu()
         {
             banner = @"
@@ -40,54 +68,30 @@ namespace WorkerManagement
 
         }
 
-        public void AddMethods()
-        {
-            AddMethod(1, "Register new IT worker", RegisterNewITWorker);
-            AddMethod(2, "Register new team", AddTeam);
-            AddMethod(3, "Register new task (unassigned to anyone)", AddTask);
-            AddMethod(4, "List all team names", ListAllTeamNames);
-            AddMethod(5, "List team members by team name", ListTeamMembersByTeamName);
-            AddMethod(6, "List unassigned tasks", ListUnassignedTasks);
-            AddMethod(7, "List task assignments by team name", ListTaskAssignmentsByTeamName);
-            AddMethod(8, "Assign IT worker to a team as manager", AssignITWorkerAsManager);
-            AddMethod(9, "Assign IT worker to a team as technician", AssignITWorkerAsTechnician);
-            AddMethod(10, "Assign task to IT worker", AssignTaskToITWorker);
-            AddMethod(11, "Unregister IT worker", UnregisterITWorker);
-            AddMethod(12, "Exit", ExitProgram);
-            AddMethod(13, "Change task status", ChangeTaskStatus); //Cambiamos de sitio para que no haya conflicto con el testing según el enunciado
-        }
-
-        public override void AddMethod(int id, string description, Action method)
-        {
-            if (MenuMask.Contains(id))
-            {
-                Methods.Add(new MenuMethod(id, description, method));
-            }
-        }
-
-        public void RunMenuWorkerManagement()
+        public virtual void RunMenuWorkerManagement()
         {
             RunMenu();
         }
-        private void RegisterNewITWorker()
+        public virtual void RegisterNewITWorker()
         {
             try
             {
-                ITWorkers.Add(new ITWorker(
-                    GetString("Enter name of the worker"),
-                    GetString("Enter surname of the worker"),
-                    GetDateTime("Enter birthdate of the worker"),
-                    GetUint("Enter the years of experience of the worker"),
+                Company.ITWorkers.Add(new ITWorker(
+                    InputParsing.GetString("Enter name of the worker"),
+                    InputParsing.GetString("Enter surname of the worker"),
+                    InputParsing.GetDateTime("Enter birthdate of the worker"),
+                    InputParsing.GetUint("Enter the years of experience of the worker"),
                     GetLevel("Enter the level of the worker")
                     ));
                 string techKnowledge;
                 while (true)
                 {
-                    techKnowledge = GetString("Enter the tech knowledge of the worker (or type 'exit' to finish)");
+                    techKnowledge = InputParsing.GetString("Enter the tech knowledge of the worker (or type 'exit' to finish)");
                     if (techKnowledge.ToLower() == "exit")
                         break;
-                    ITWorkers[^1].AddTechKnowledge(techKnowledge);
+                    Company.ITWorkers[^1].AddTechKnowledge(techKnowledge);
                 }
+                Console.WriteLine($"Worker with id {Company.ITWorkers[^1].Id} registered successfully");
             }
             catch (Exception ex)
             {
@@ -96,11 +100,11 @@ namespace WorkerManagement
         }
 
 
-        private void AddTeam()
+        public virtual void AddTeam()
         {
             try
             {
-                AddTeamToList(new Team(GetString("Enter the name of the team")));
+                AddTeamToList(new Team(InputParsing.GetString("Enter the name of the team")));
             }
             catch (Exception ex)
             {
@@ -108,22 +112,23 @@ namespace WorkerManagement
             }
         }
 
-        private void AddTeamToList(Team team) {
-            foreach (var t in Teams)
+        public virtual void AddTeamToList(Team team)
+        {
+            foreach (var t in Company.Teams)
             {
                 if (t.Name == team.Name)
                 {
                     throw new ArgumentException("Team already exists");
                 }
             }
-            Teams.Add(team);
+            Company.Teams.Add(team);
         }
 
-        private void AddTask()
+        public virtual void AddTask()
         {
             try
             {
-                Tasks.Add(new Task(GetString("Enter the description of the task"), GetString("Enter technology of the task")));
+                Company.Tasks.Add(new Task(InputParsing.GetString("Enter the description of the task"), InputParsing.GetString("Enter technology of the task")));
             }
             catch (Exception ex)
             {
@@ -131,66 +136,39 @@ namespace WorkerManagement
             }
         }
 
-        private void ListAllTeamNames()
+        public virtual void ListAllTeamNames()
         {
             //print every team name along with a number in order with a foreach
             Console.WriteLine("Listing all team names");
-            foreach (var team in Teams)
+            foreach (var team in Company.Teams)
             {
                 Console.WriteLine(team.Name);
             }
         }
 
-        private void ListTeamMembersByTeamName()
+        public virtual void ListTeamMembersByTeamName()
         {
-            //if is a manager only list the members of their teams
-            if (isManager)
+            string teamName = InputParsing.GetString("Enter the name of the team");
+            Team? team = Company.Teams.Find(t => t.Name == teamName);
+            if (team == null)
             {
-                Console.WriteLine($"Listing team members of {LoginAccount.Name}");
-                foreach (var team in Teams)
-                {
-                    if (team.Managers.Contains(LoginAccount))
-                    {
-                        Console.WriteLine($"Team: {team.Name}");
-                        Console.WriteLine("Managers:");
-                        foreach (var manager in team.Managers)
-                        {
-                            Console.WriteLine($"- {manager.Name} {manager.Surname}");
-                        }
-                        Console.WriteLine("Technicians:");
-                        foreach (var technician in team.Technicians)
-                        {
-                            Console.WriteLine($"- {technician.Name} {technician.Surname}");
-                        }
-                    }
-                }
+                Console.WriteLine("Team not found");
+                return;
             }
-            else
+            Console.WriteLine($"Listing team members of {teamName}");
+            foreach (var manager in team.Managers)
             {
-                string teamName = GetString("Enter the name of the team");
-                Team? team = Teams.Find(t => t.Name == teamName);
-                if (team == null)
-                {
-                    Console.WriteLine("Team not found");
-                    return;
-                }
-                Console.WriteLine($"Listing team members of {teamName}");
-                Console.WriteLine("Managers:");
-                foreach (var manager in team.Managers)
-                {
-                    Console.WriteLine($"- {manager.Name} {manager.Surname}");
-                }
-                Console.WriteLine("Technicians:");
-                foreach (var technician in team.Technicians)
-                {
-                    Console.WriteLine($"- {technician.Name} {technician.Surname}");
-                }
+                Console.WriteLine($"Manager: {manager.Name} {manager.Surname}");
+            }
+            foreach (var technician in team.Technicians)
+            {
+                Console.WriteLine($"Technician: {technician.Name} {technician.Surname}");
             }
         }
 
-        private void ListUnassignedTasks()
+        public virtual void ListUnassignedTasks()
         {
-            foreach (var task in Tasks)
+            foreach (var task in Company.Tasks)
             {
                 if (task.IdWorker == 0)
                 {
@@ -199,51 +177,36 @@ namespace WorkerManagement
             }
         }
 
-        private void ListTaskAssignmentsByTeamName()
+        public virtual void ListTaskAssignmentsByTeamName()
         {
-            //ONly list the tasks of the teams of the manager
-            foreach (var task in Tasks) {
-                if (isManager)
-                {
-                    foreach (var team in Teams)
-                    {
-                        if (team.Managers.Contains(LoginAccount))
-                        {
-                            if (task.IdWorker != 0)
-                            {
-                                Console.WriteLine($"Task: {task.Description}");
-                                Console.WriteLine($"Assigned to: {ITWorkers.Find(x => x.Id == task.IdWorker).Name} {ITWorkers.Find(x => x.Id == task.IdWorker).Surname}");
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (var team in Teams)
-                    {
-                        if (team.Managers.Contains(LoginAccount) || team.Technicians.Contains(LoginAccount))
-                        {
-                            if (task.IdWorker != 0)
-                            {
-                                Console.WriteLine($"Task: {task.Description}");
-                                Console.WriteLine($"Assigned to: {ITWorkers.Find(x => x.Id == task.IdWorker).Name} {ITWorkers.Find(x => x.Id == task.IdWorker).Surname}");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void AssignITWorkerAsManager()
-        {
-            string teamName = GetString("Enter the name of the team");
-            Team? team = Teams.Find(t => t.Name == teamName);
+            string teamName = InputParsing.GetString("Enter the name of the team");
+            Team? team = Company.Teams.Find(t => t.Name == teamName);
             if (team == null)
             {
                 Console.WriteLine("Team not found");
                 return;
             }
-            ITWorker? itworker = ITWorkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            Console.WriteLine($"Listing task assignments of {teamName}");
+            foreach (var task in Company.Tasks)
+            {
+                if (task.IdWorker != 0 && team.Technicians.Find(itworker => itworker.Id == task.IdWorker) != null)
+                {
+                    Console.WriteLine($"Task: {task.Description} assigned to {task.IdWorker}");
+                }
+            }
+        }
+
+        public virtual void AssignITWorkerAsManager()
+        {
+            string teamName = InputParsing.GetString("Enter the name of the team");
+            Team? team = Company.Teams.Find(t => t.Name == teamName);
+            if (team == null)
+            {
+                Console.WriteLine("Team not found");
+                return;
+            }
+            uint workerId = InputParsing.GetUint("Enter the ID of the IT worker");
+            ITWorker? itworker = Company.ITWorkers.Find(itw => itw.Id == workerId);
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
@@ -259,16 +222,17 @@ namespace WorkerManagement
             }
         }
 
-        private void AssignITWorkerAsTechnician()
+        public virtual void AssignITWorkerAsTechnician()
         {
-            string teamName = GetString("Enter the name of the team");
-            Team? team = Teams.Find(t => t.Name == teamName);
+            string teamName = InputParsing.GetString("Enter the name of the team");
+            Team? team = Company.Teams.Find(t => t.Name == teamName);
             if (team == null)
             {
                 Console.WriteLine("Team not found");
                 return;
             }
-            ITWorker? itworker = ITWorkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            uint workerId = InputParsing.GetUint("Enter the ID of the IT worker");
+            ITWorker? itworker = Company.ITWorkers.Find(itw => itw.Id == workerId);
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
@@ -284,23 +248,17 @@ namespace WorkerManagement
             }
         }
 
-        private void AssignTaskToITWorker()
+        public virtual void AssignTaskToITWorker()
         {
-            ITWorker? itworker;
-            if (isManager)
+            uint workerId = InputParsing.GetUint("Enter the ID of the IT worker");
+            ITWorker? itworker = Company.ITWorkers.Find(itw => itw.Id == workerId);
+            if (itworker == null)
             {
-                itworker = ITWorkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
-                if (itworker == null)
-                {
-                    Console.WriteLine("IT worker not found");
-                    return;
-                }
+                Console.WriteLine("IT worker not found");
+                return;
             }
-            else
-            {
-                itworker = LoginAccount;
-            }
-            Task? task = Tasks.Find(t => t.Id == GetUint("Enter the ID of the task"));
+            uint taskId = InputParsing.GetUint("Enter the ID of the task");
+            Task? task = Company.Tasks.Find(t => t.Id == taskId);
             if (task == null)
             {
                 Console.WriteLine("Task not found");
@@ -316,9 +274,10 @@ namespace WorkerManagement
             }
         }
 
-        private void ChangeTaskStatus()
+        public virtual void ChangeTaskStatus()
         {
-            Task? task = Tasks.Find(t => t.Id == GetUint("Enter the ID of the task"));
+            uint taskId = InputParsing.GetUint("Enter the ID of the task");
+            Task? task = Company.Tasks.Find(t => t.Id == taskId);
             if (task == null)
             {
                 Console.WriteLine("Task not found");
@@ -327,36 +286,37 @@ namespace WorkerManagement
             task.SetStatus(GetStatus("Enter the new status of the task"));
         }
 
-        private void UnregisterITWorker()
+        public virtual void UnregisterITWorker()
         {
-            ITWorker? itworker = ITWorkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            uint workerId = InputParsing.GetUint("Enter the ID of the IT worker");
+            ITWorker? itworker = Company.ITWorkers.Find(itw => itw.Id == workerId);
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
                 return;
             }
             itworker.UnregisterWorker(DateTime.Now);
-            foreach (Team team in Teams)
+            foreach (Team team in Company.Teams)
             {
                 if (team.Managers.Contains(itworker))
                     team.Managers.Remove(itworker);
                 if (team.Technicians.Contains(itworker))
                     team.Technicians.Remove(itworker);
             }
-            foreach (Task task in Tasks)
+            foreach (Task task in Company.Tasks)
             {
                 if (task.IdWorker == itworker.Id)
                     task.IdWorker = 0;
             }
-            ITWorkers.Remove(itworker);
+            Company.ITWorkers.Remove(itworker);
         }
 
-        protected override void ExitProgram()
+        public override void ExitProgram()
         {
             Console.WriteLine("Exiting WorkerManagement program...");
         }
 
-        protected ITWorker.Levels GetLevel(string requirement)
+        public virtual ITWorker.Levels GetLevel(string requirement)
         {
             Console.Write(requirement + ": ");
             while (true)
@@ -373,7 +333,7 @@ namespace WorkerManagement
             }
         }
 
-        protected Task.Statuses GetStatus(string requirement)
+        public virtual Task.Statuses GetStatus(string requirement)
         {
             Console.Write(requirement + ": ");
             while (true)

@@ -1,69 +1,69 @@
 ﻿using Menu;
+using System.Runtime.InteropServices;
 using WorkerManagement;
+using WorkerManagementConsoleApp;
 
-WorkerManagementMenu menu = new();
-List<ITWorker> workers = new();
-for (uint i = 0; i < 10; i++)
-{
-    workers.Add(new ITWorker("Name" + i,"Surname" + i, new DateTime(2004, 1, 31), i, ITWorker.Levels.junior));
-}
-menu.ITWorkers = workers;
-//teams
-List<Team> teams = new();
-for (uint i = 0; i < 10; i++)
-{
-    teams.Add(new Team("Team" + i));
-}
-menu.Teams = teams;
-//add workers to teams
-for (uint i = 0; i < 10; i++)
-{
-    try { teams[(int)i].AddManager(workers[(int)i]); }
-    catch (ArgumentException) { }
-    try { teams[(int)i].AddTechnician(workers[(int)i]); }
-    catch (ArgumentException) { }
-}
+Company company = new Company();
+ExampleData exampleData = new ExampleData(40, 10, 80);
+exampleData.AddExampleData();
+company.ITWorkers = exampleData.ITWorkers;
+company.Teams = exampleData.Teams;
+company.Tasks = exampleData.Tasks;
+WorkerManagementMenu? workerManagementMenu;
 
 do
 {
-    uint Id = menu.GetUint("Enter the ID of the ITWorker account you want to log in");
-    if (Id == 0)
+    Console.Clear();
+    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
     {
-        menu.isAdmin = true;
-        menu.LoginAccount = new ITWorker("admin", "admin", new DateTime(2000, 1, 1), 5, ITWorker.Levels.senior);
-        Console.WriteLine("You are now logged in as admin");
-        break;
+        Console.Beep(1500, 500);
     }
-    if (menu.ITWorkers.Exists(x => x.Id == Id))
+    else
     {
-        menu.LoginAccount = menu.ITWorkers.Find(x => x.Id == Id);
-        break;
+        Console.WriteLine("\a");
+    }
+    Console.WriteLine("Welcome to the Worker Management Program!");
+    workerManagementMenu = null;
+    int Id = InputParsing.GetInt("Enter the ID of the ITWorker account you want access or '-1' to exit the program");
+    if (Id == -1)
+    {
+        return;
+    }
+    else if (Id == 0)
+    {
+        workerManagementMenu = new WorkerManagementMenuAdmin();
+        workerManagementMenu.Company = company;
+    }
+    else if (company.ITWorkers.Find(x => x.Id == Id) is ITWorker itworker)
+    {
+        foreach (var team in company.Teams)
+        {
+            if (team.Managers.Exists(x => x.Id == Id))
+            {
+                workerManagementMenu = new WorkerManagementMenuManager();
+                workerManagementMenu.Company = company;
+                workerManagementMenu.SessionITWorker = itworker;
+                break;
+            }
+        }
+        if (workerManagementMenu == null)
+        {
+            foreach (var team in company.Teams)
+            {
+                if (team.Technicians.Exists(x => x.Id == Id))
+                {
+                    workerManagementMenu = new WorkerManagementMenuITWorker();
+                    workerManagementMenu.Company = company;
+                    workerManagementMenu.SessionITWorker = itworker;
+                    break;
+                }
+            }
+        }
     }
     else
     {
         Console.WriteLine("Worker with that ID does not exist.");
+        continue;
     }
+    workerManagementMenu?.RunMenuWorkerManagement();
 } while (true);
-//look if the worker is manager
-menu.MenuMask.Clear();
-if (menu.Teams.Exists(x => x.Managers.Exists(y => y.Id == 0)))
-{
-    menu.isManager = true;
-    menu.MenuMask.Add(5);
-    menu.MenuMask.Add(6);
-    menu.MenuMask.Add(7);
-    menu.MenuMask.Add(9);
-    menu.MenuMask.Add(10);
-    menu.MenuMask.Add(12);
-}
-else
-{
-    menu.isManager = false;
-    menu.MenuMask.Add(6);
-    menu.MenuMask.Add(7);
-    menu.MenuMask.Add(10);
-    menu.MenuMask.Add(12);
-}
-menu.AddMethods();
-
-menu.RunMenuWorkerManagement();

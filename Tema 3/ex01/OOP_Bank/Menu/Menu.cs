@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Menu
 {
     public abstract class Menu
     {
-        protected internal string banner = "Welcome to this Menu!";
+        protected internal string? welcome = "Welcome to the program!";
+        protected internal string banner = "";
         protected internal ConsoleColor BackgroundColor = ConsoleColor.Black;
         protected internal ConsoleColor FontColor = ConsoleColor.White;
         public ConsoleKey ContinueKey = ConsoleKey.Enter, ExitKey = ConsoleKey.Escape;
@@ -16,9 +18,13 @@ namespace Menu
             Methods = new List<MenuMethod>();
         }
 
-        public void RunMenu()
+        public virtual void RunMenu()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Console.Beep(1500, 500);
+            }
             int option;
             bool success;
             do
@@ -46,7 +52,7 @@ namespace Menu
             } while (true);
         }
 
-        internal protected virtual void ExitProgram()
+        public virtual void ExitProgram()
         {
             Console.WriteLine("Goodbye!");
         }
@@ -89,6 +95,11 @@ namespace Menu
             {
                 Console.WriteLine($"{method.Id}: {method.Description}");
             }
+            if (welcome != null)
+            {
+                Console.WriteLine(welcome);
+                welcome = null;
+            }
             Console.Write("\nChoose an option: ");
         }
         internal protected void ExecuteMethod(int id)
@@ -105,59 +116,6 @@ namespace Menu
         }
 
         public int GetMenuLength() => Methods.Count;
-
-        public int GetInt(string requirement)
-        {
-            Console.Write(requirement + ": ");
-            int number;
-            while (!int.TryParse(Console.ReadLine()?.Trim(), out number))
-            {
-                Console.WriteLine("Invalid input. Please enter a number.");
-                Console.Write(requirement + ": ");
-            }
-            return number;
-        }
-
-        public uint GetUint(string requirement)
-        {
-            Console.Write(requirement + ": ");
-            uint number;
-            while (!uint.TryParse(Console.ReadLine()?.Trim(), out number))
-            {
-                Console.WriteLine("Invalid input. Please enter a positive number.");
-                Console.Write(requirement + ": ");
-            }
-            return number;
-        }
-
-        public string? GetString(string requirement)
-        {
-            while (true)
-            {
-                Console.Write(requirement + ": ");
-                string? input = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Invalid input. Please enter a string.");
-                }
-                else
-                {
-                    return input;
-                }
-            }
-        }
-
-        public DateTime GetDateTime(string requirement)
-        {
-            Console.Write(requirement + ": ");
-            DateTime date;
-            while (!DateTime.TryParse(Console.ReadLine()?.Trim(), out date))
-            {
-                Console.WriteLine("Invalid input. Please enter a date.");
-                Console.Write(requirement + ": ");
-            }
-            return date;
-        }
     }
 
     public class MenuMethod

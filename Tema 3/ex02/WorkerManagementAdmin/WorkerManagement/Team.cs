@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkerManagement
 {
-    internal class Team
+    public class Team
     {
         public string Name { get; set; }
         public List<ITWorker> Managers { get; private set; } = new();
