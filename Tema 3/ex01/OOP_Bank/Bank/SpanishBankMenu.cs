@@ -137,7 +137,7 @@ namespace Bank
         {
             ClientSession?.ShowBalance();
         }
-        protected override void ExitProgram()
+        public override void ExitProgram()
         {
             Console.WriteLine("\nGoodbye!");
             ShowCurrentMoney();

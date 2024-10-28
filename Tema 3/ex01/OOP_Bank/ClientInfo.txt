@@ -1,0 +1,60 @@
+Client ID: 0
+Bank: ChusBanks
+Account number: ES8822221111880000000000 
+Account pin: 5907 
+
+
+Client ID: 1
+Bank: ChusBanks
+Account number: ES9622221111960000000001 
+Account pin: 7929 
+
+
+Client ID: 2
+Bank: ChusBanks
+Account number: ES3622221111360000000002 
+Account pin: 5897 
+
+
+Client ID: 3
+Bank: ChusBanks
+Account number: ES9522221111950000000003 
+Account pin: 9533 
+
+
+Client ID: 4
+Bank: ChusBanks
+Account number: ES2922221111290000000004 
+Account pin: 2090 
+
+
+Client ID: 5
+Bank: ChusBanks
+Account number: ES1022221111100000000005 
+Account pin: 5422 
+
+
+Client ID: 6
+Bank: ChusBanks
+Account number: ES9722221111970000000006 
+Account pin: 9033 
+
+
+Client ID: 7
+Bank: ChusBanks
+Account number: ES4422221111440000000007 
+Account pin: 4644 
+
+
+Client ID: 8
+Bank: ChusBanks
+Account number: ES7222221111720000000008 
+Account pin: 9208 
+
+
+Client ID: 9
+Bank: ChusBanks
+Account number: ES7922221111790000000009 
+Account pin: 6588 
+
+

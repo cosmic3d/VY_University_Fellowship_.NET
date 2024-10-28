@@ -47,7 +47,6 @@ namespace Bank
             AccountPin = GeneratePin(); // PIN aleatorio
         }
 
-        // Implementación de los métodos abstractos definidos en Account
         public override void AddIncome(decimal income)
         {
             income = Math.Abs(income);
