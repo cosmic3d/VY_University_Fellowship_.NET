@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FamilyClass;
-
+using Menu;
 namespace FamilyConsoleApp
 {
     internal class MenuFamily : Menu.Menu
@@ -37,21 +37,21 @@ namespace FamilyConsoleApp
 
         private void SetFamilyFields()
         {
-            int grandpaId = GetInt("Enter Grandpa Id: ");
-            string? grandpaName = GetString("Enter Grandpa Name: ");
-            int grandpaMoney = GetInt("Enter Grandpa Money: ");
+            int grandpaId = InputParsing.GetInt("Enter Grandpa Id: ");
+            string? grandpaName = InputParsing.GetString("Enter Grandpa Name: ");
+            int grandpaMoney = InputParsing.GetInt("Enter Grandpa Money: ");
 
-            int fatherId = GetInt("Enter Father Id: ");
-            string? fatherName = GetString("Enter Father Name: ");
-            int fatherMoney = GetInt("Enter Father Money: ");
+            int fatherId = InputParsing.GetInt("Enter Father Id: ");
+            string? fatherName = InputParsing.GetString("Enter Father Name: ");
+            int fatherMoney = InputParsing.GetInt("Enter Father Money: ");
 
-            int sonId = GetInt("Enter Son Id: ");
-            string? sonName = GetString("Enter Son Name: ");
-            int sonMoney = GetInt("Enter Son Money: ");
+            int sonId = InputParsing.GetInt("Enter Son Id: ");
+            string? sonName = InputParsing.GetString("Enter Son Name: ");
+            int sonMoney = InputParsing.GetInt("Enter Son Money: ");
             Son.SetFamilyFields(grandpaId, grandpaName, grandpaMoney, fatherId, fatherName, fatherMoney, sonId, sonName, sonMoney);
         }
 
-        protected override void ExitProgram()
+        public override void ExitProgram()
         {
             Console.WriteLine("Exiting Family program...");
         }

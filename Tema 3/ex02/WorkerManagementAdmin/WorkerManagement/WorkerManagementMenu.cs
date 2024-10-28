@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Menu;
 
 namespace WorkerManagement
 {
@@ -57,16 +58,16 @@ namespace WorkerManagement
             try
             {
                 _itworkers.Add(new ITWorker(
-                    GetString("Enter name of the worker"),
-                    GetString("Enter surname of the worker"),
-                    GetDateTime("Enter birthdate of the worker"),
-                    GetUint("Enter the years of experience of the worker"),
+                    InputParsing.GetString("Enter name of the worker"),
+                    InputParsing.GetString("Enter surname of the worker"),
+                    InputParsing.GetDateTime("Enter birthdate of the worker"),
+                    InputParsing.GetUint("Enter the years of experience of the worker"),
                     GetLevel("Enter the level of the worker")
                     ));
                 string techKnowledge;
                 while (true)
                 {
-                    techKnowledge = GetString("Enter the tech knowledge of the worker (or type 'exit' to finish)");
+                    techKnowledge = InputParsing.GetString("Enter the tech knowledge of the worker (or type 'exit' to finish)");
                     if (techKnowledge.ToLower() == "exit")
                         break;
                     _itworkers[^1].AddTechKnowledge(techKnowledge);
@@ -83,7 +84,7 @@ namespace WorkerManagement
         {
             try
             {
-                AddTeamToList(new Team(GetString("Enter the name of the team")));
+                AddTeamToList(new Team(InputParsing.GetString("Enter the name of the team")));
             }
             catch (Exception ex)
             {
@@ -106,7 +107,7 @@ namespace WorkerManagement
         {
             try
             {
-                _tasks.Add(new Task(GetString("Enter the description of the task"), GetString("Enter technology of the task")));
+                _tasks.Add(new Task(InputParsing.GetString("Enter the description of the task"), InputParsing.GetString("Enter technology of the task")));
             }
             catch (Exception ex)
             {
@@ -126,7 +127,7 @@ namespace WorkerManagement
 
         public void ListTeamMembersByTeamName()
         {
-            string teamName = GetString("Enter the name of the team");
+            string teamName = InputParsing.GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
             if (team == null)
             {
@@ -157,7 +158,7 @@ namespace WorkerManagement
 
         public void ListTaskAssignmentsByTeamName()
         {
-            string teamName = GetString("Enter the name of the team");
+            string teamName = InputParsing.GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
             if (team == null)
             {
@@ -176,14 +177,14 @@ namespace WorkerManagement
 
         public void AssignITWorkerAsManager()
         {
-            string teamName = GetString("Enter the name of the team");
+            string teamName = InputParsing.GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
             if (team == null)
             {
                 Console.WriteLine("Team not found");
                 return;
             }
-            ITWorker? itworker = _itworkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            ITWorker? itworker = _itworkers.Find(itw => itw.Id == InputParsing.GetUint("Enter the ID of the IT worker"));
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
@@ -201,14 +202,14 @@ namespace WorkerManagement
 
         public void AssignITWorkerAsTechnician()
         {
-            string teamName = GetString("Enter the name of the team");
+            string teamName = InputParsing.GetString("Enter the name of the team");
             Team? team = _teams.Find(t => t.Name == teamName);
             if (team == null)
             {
                 Console.WriteLine("Team not found");
                 return;
             }
-            ITWorker? itworker = _itworkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            ITWorker? itworker = _itworkers.Find(itw => itw.Id == InputParsing.GetUint("Enter the ID of the IT worker"));
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
@@ -226,13 +227,13 @@ namespace WorkerManagement
 
         public void AssignTaskToITWorker()
         {
-            ITWorker? itworker = _itworkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            ITWorker? itworker = _itworkers.Find(itw => itw.Id == InputParsing.GetUint("Enter the ID of the IT worker"));
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
                 return;
             }
-            Task? task = _tasks.Find(t => t.Id == GetUint("Enter the ID of the task"));
+            Task? task = _tasks.Find(t => t.Id == InputParsing.GetUint("Enter the ID of the task"));
             if (task == null)
             {
                 Console.WriteLine("Task not found");
@@ -250,7 +251,7 @@ namespace WorkerManagement
 
         public void ChangeTaskStatus()
         {
-            Task? task = _tasks.Find(t => t.Id == GetUint("Enter the ID of the task"));
+            Task? task = _tasks.Find(t => t.Id == InputParsing.GetUint("Enter the ID of the task"));
             if (task == null)
             {
                 Console.WriteLine("Task not found");
@@ -261,7 +262,7 @@ namespace WorkerManagement
 
         public void UnregisterITWorker()
         {
-            ITWorker? itworker = _itworkers.Find(itw => itw.Id == GetUint("Enter the ID of the IT worker"));
+            ITWorker? itworker = _itworkers.Find(itw => itw.Id == InputParsing.GetUint("Enter the ID of the IT worker"));
             if (itworker == null)
             {
                 Console.WriteLine("IT worker not found");
