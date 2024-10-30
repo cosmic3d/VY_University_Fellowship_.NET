@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{65A0FA59-1307-4747-82D8-9633B0726E88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Bussiness", "2 - Bussiness", "{CBA7D104-0FD7-4937-A9D2-5412677A001E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{55676D3D-0783-4254-97F2-9608CF545683}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Presentation", "1- Presentation", "{E9905840-5998-415D-90FC-BB166B33115A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{DB9584A4-DCCE-4E86-8E8D-9C7251F2ECC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - XCutting", "5 - XCutting", "{69C1F466-5209-43AF-ADCC-00E18323202A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountOOPMultiuser.Infrastructure.Contracts", "BankAccountOOPMultiuser.Infrastructure.Contracts\BankAccountOOPMultiuser.Infrastructure.Contracts.csproj", "{BB3C5C45-0717-4625-87D3-3798091E63C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountOOPMultiuser.Infrastructure.Impl", "BankAccountOOPMultiuser.Infrastructure.Impl\BankAccountOOPMultiuser.Infrastructure.Impl.csproj", "{FE7D7B68-B981-46B3-A0CB-7DAFAFD045DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountOOPMultiuser.Domain.Contracts", "BankAccountOOPMultiuser.Domain.Contracts\BankAccountOOPMultiuser.Domain.Contracts.csproj", "{A86FA1A2-BF1D-4BB6-9A72-997CAFA589C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB3C5C45-0717-4625-87D3-3798091E63C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3C5C45-0717-4625-87D3-3798091E63C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3C5C45-0717-4625-87D3-3798091E63C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3C5C45-0717-4625-87D3-3798091E63C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7D7B68-B981-46B3-A0CB-7DAFAFD045DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7D7B68-B981-46B3-A0CB-7DAFAFD045DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7D7B68-B981-46B3-A0CB-7DAFAFD045DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7D7B68-B981-46B3-A0CB-7DAFAFD045DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86FA1A2-BF1D-4BB6-9A72-997CAFA589C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86FA1A2-BF1D-4BB6-9A72-997CAFA589C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86FA1A2-BF1D-4BB6-9A72-997CAFA589C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86FA1A2-BF1D-4BB6-9A72-997CAFA589C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB3C5C45-0717-4625-87D3-3798091E63C3} = {65A0FA59-1307-4747-82D8-9633B0726E88}
+		{FE7D7B68-B981-46B3-A0CB-7DAFAFD045DF} = {65A0FA59-1307-4747-82D8-9633B0726E88}
+		{A86FA1A2-BF1D-4BB6-9A72-997CAFA589C4} = {55676D3D-0783-4254-97F2-9608CF545683}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A4F592C-CC8D-4523-A7D5-D9C3DABEB726}
+	EndGlobalSection
+EndGlobal

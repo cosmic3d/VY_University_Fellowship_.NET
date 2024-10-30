@@ -20,13 +20,14 @@ namespace Menu
 
         public virtual void RunMenu()
         {
+            int option;
+            bool success;
+
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Console.Beep(1500, 500);
             }
-            int option;
-            bool success;
             do
             {
                 ColorBanner();
