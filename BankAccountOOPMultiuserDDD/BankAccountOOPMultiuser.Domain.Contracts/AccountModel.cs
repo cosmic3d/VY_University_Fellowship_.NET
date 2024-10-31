@@ -14,7 +14,16 @@
         }
 
         public void AddIncome(int amount)
-        {
+        { 
+            Balance += amount;
+            Movements.Add(new(DateTime.Now, amount));
         }
+
+        public void AddOutcome(int amount)
+        {
+            Balance -= amount;
+            Movements.Add(new(DateTime.Now, -amount));
+        }
+
     }
 }
