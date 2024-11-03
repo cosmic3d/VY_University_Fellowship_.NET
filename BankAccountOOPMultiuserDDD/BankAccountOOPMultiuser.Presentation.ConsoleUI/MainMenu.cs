@@ -32,7 +32,7 @@ namespace BankAccountOOPMultiuser.Presentation.ConsoleUI
                         outputMsg = $"You surpassed the max income of {result.MaxIncomeAllowed}€.";
                         break;
                     case IncomeErrorEnum.NegativeOrZero:
-                        outputMsg = $"Your income must be negative of zero.";
+                        outputMsg = $"Your income cant be negative of zero.";
                         break;
                     case IncomeErrorEnum.AccountNotFound:
                         outputMsg = $"Account was not found";
@@ -60,10 +60,10 @@ namespace BankAccountOOPMultiuser.Presentation.ConsoleUI
                         outputMsg = $"You surpassed the max outcome of {result.MaxOutcomeAllowed}€.";
                         break;
                     case OutcomeErrorEnum.NegativeOrZero:
-                        outputMsg = $"Your outcome must be negative of zero.";
+                        outputMsg = $"Your outcome cant be negative of zero.";
                         break;
                     case OutcomeErrorEnum.OutcomeLeavesAccountOnRed:
-                        outputMsg = $"You cannot outcome that much money. You are lacking {Math.Abs(result.TotalMoney - Math.Abs(outcome)) - result.MaxDebtAllowed}";
+                        outputMsg = $"You cannot outcome that much money. You are lacking {result.MaxDebtAllowed + Math.Abs(result.TotalMoney - Math.Abs(outcome))}€.";
                         break;
                     case OutcomeErrorEnum.AccountNotFound:
                         outputMsg = $"Account was not found";
@@ -157,7 +157,7 @@ namespace BankAccountOOPMultiuser.Presentation.ConsoleUI
             }
             else
             {
-                foreach (var movement in resultDto.MovementList)
+                foreach (var movement in resultDto.MovementList!)
                 {
                     outputMsg += $"{movement.Item1} - {movement.Item2}{Environment.NewLine}";
                 }
@@ -168,7 +168,24 @@ namespace BankAccountOOPMultiuser.Presentation.ConsoleUI
         }
         private void ShowBalance()
         {
-            throw new NotImplementedException();
+            string outputMsg = "";
+            MoneyResultDto resultDto = AccountService.GetMoney();
+            if (resultDto.HasErrors)
+            {
+                switch (resultDto.MoneyResultError)
+                {
+                    case MoneyErrorEnum.AccountNotFound:
+                        outputMsg += "Account was not found.";
+                        break;
+                }
+                outputMsg += " No operation was performed";
+            }
+            else
+            {
+                outputMsg += $"Your current balance is {resultDto.TotalMoney}€";
+                outputMsg += $"{Environment.NewLine}Operation was succesfully performed";
+            }
+            Console.WriteLine(outputMsg);
         }
 
     }

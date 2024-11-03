@@ -225,9 +225,26 @@ namespace BankAccountOOPMultiuser.Business.Impl
             }
             return resultDto;
         }
-        decimal? IAccountService.GetMoney()
+        MoneyResultDto IAccountService.GetMoney()
         {
-            throw new NotImplementedException();
+            AccountModel accountModel;
+            MoneyResultDto resultDto = new();
+            if (_accountRepository.GetAccountFromRepository(Session.IBAN!) is AccountEntity accountEntity)
+            {
+                resultDto.TotalMoney = accountEntity.Balance;
+                accountModel = new(
+                        accountEntity.Balance,
+                        accountEntity.Movements,
+                        accountEntity.Pin
+                        );
+                resultDto.TotalMoney = accountModel.GetBalance();
+            }
+            else
+            {
+                resultDto.HasErrors = true;
+                resultDto.MoneyResultError = MoneyErrorEnum.AccountNotFound;
+            }
+            return resultDto;
         }
 
     }

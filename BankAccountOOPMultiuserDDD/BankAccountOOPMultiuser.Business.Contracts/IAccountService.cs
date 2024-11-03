@@ -6,7 +6,7 @@ namespace BankAccountOOPMultiuser.Business.Contracts
     {
         public LoginDto CheckPIN(string accountPIN);
         public LoginDto CheckIBAN(string accountIBAN);
-        public decimal? GetMoney();
+        public MoneyResultDto GetMoney();
         public IncomeResultDto AddMoney(decimal income);
         public OutcomeResultDto RetireMoney(decimal outcome);
         public ListMovementsResultDto GetMovements();
