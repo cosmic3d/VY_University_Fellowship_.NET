@@ -1,11 +1,15 @@
 ﻿using System;
 using BankAccountOOPMultiuser.XCutting.Enums;
 
-public class IncomeResultDto
+namespace BankAccountOOPMultiuser.Business.Contracts.DTOs
 {
-	public bool HasErrors;
-	public IncomeErrorEnum incomeResultError;
-	public int MaxIncomeAllowed;
-	public int TotalMoney;
+	public class IncomeResultDto
+	{
+		public bool HasErrors;
+		public IncomeErrorEnum IncomeResultError;
+		public decimal MaxIncomeAllowed;
+		public decimal TotalMoney;
+
+	}
 
 }

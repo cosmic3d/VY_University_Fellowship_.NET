@@ -3,6 +3,7 @@
     public enum IncomeErrorEnum
     {
         NegativeOrZero,
-        MaxIncomeSurpassed
+        MaxIncomeSurpassed,
+        AccountNotFound
     }
 }

@@ -6,6 +6,7 @@ namespace BankAccountOOPMultiuser.XCutting.Enums
     {
         NegativeOrZero,
         MaxOutcomeSurpassed,
-        OutcomeLeavesAccountOnRed
+        OutcomeLeavesAccountOnRed,
+        AccountNotFound
     }
 }

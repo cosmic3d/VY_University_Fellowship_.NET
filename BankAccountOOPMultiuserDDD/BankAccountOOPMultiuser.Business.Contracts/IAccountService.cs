@@ -1,14 +1,16 @@
-﻿using BankAccountOOPMultiuser.Business.Contracts.
+﻿using BankAccountOOPMultiuser.Business.Contracts.DTOs;
 
 namespace BankAccountOOPMultiuser.Business.Contracts
 {
     public interface IAccountService
     {
-        decimal? GetMoney();
-        IncomeResultDto AddMoney(decimal income);
-        OutcomeResultDto RetireMoney(decimal outcome);
-        List<Tuple<DateTime, int>> GetMovements();
-        List<Tuple<DateTime, int>> GetIncomes();
-        List<Tuple<DateTime, int>> GetOutcomes();
+        public LoginDto CheckPIN(string accountPIN);
+        public LoginDto CheckIBAN(string accountIBAN);
+        public decimal? GetMoney();
+        public IncomeResultDto AddMoney(decimal income);
+        public OutcomeResultDto RetireMoney(decimal outcome);
+        public ListMovementsResultDto GetMovements();
+        public ListMovementsResultDto GetIncomes();
+        public ListMovementsResultDto GetOutcomes();
     }
 }
