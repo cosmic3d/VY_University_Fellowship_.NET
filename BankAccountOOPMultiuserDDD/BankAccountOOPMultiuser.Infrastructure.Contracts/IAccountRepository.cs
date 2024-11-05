@@ -4,8 +4,8 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts
 {
     public interface IAccountRepository
     {
-        AccountEntity AddAccountToRepository(AccountEntity account);
-        public AccountEntity? GetAccountFromRepository(string accountIBAN);
-        public void UpdateAccountFromRepository(AccountEntity account);
+        Account AddAccountToRepository(Account account);
+        public Account? GetAccountFromRepository(string accountIBAN);
+        public Account? UpdateAccountFromRepository(string accountIBAN);
     }
 }

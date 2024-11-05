@@ -17,56 +17,56 @@ namespace BankAccountOOPMultiuser.Business.Impl
             _accountRepository = accountRepository;
         }
 
-        LoginDto IAccountService.CheckIBAN(string accountIBAN)
-        {
-            LoginDto loginDto = new();
-            if (_accountRepository.GetAccountFromRepository(accountIBAN) is AccountEntity accountEntity)
-            {
-                Session.IBAN = accountEntity.IBAN;
-            }
-            else
-            {
-                loginDto.HasErrors = true;
-                loginDto.LoginError = LoginErrorEnum.AccountNotFound;
-                loginDto.AccountIBAN = accountIBAN;
-            }
-            return loginDto;
-        }
-        LoginDto IAccountService.CheckPIN(string requestPin)
-        {
-            AccountModel accountModel;
-            LoginDto loginDto = new();
-            if (_accountRepository.GetAccountFromRepository(Session.IBAN!) is AccountEntity accountEntity)
-            {
-                accountModel = new(
-                        accountEntity.Balance,
-                        accountEntity.Movements,
-                        accountEntity.Pin
-                        );
-                if (accountModel.CorrectPin(requestPin))
-                {
-                    Session.Pin = requestPin;
-                }
-                else
-                {
-                    loginDto.HasErrors = true;
-                    loginDto.LoginError = LoginErrorEnum.IncorrectPin;
-                    loginDto.AccountIBAN = Session.IBAN!;
-                }
-            }
-            else
-            {
-                loginDto.HasErrors = true;
-                loginDto.LoginError = LoginErrorEnum.AccountNotFound;
-                loginDto.AccountIBAN = Session.IBAN!; //probably null
-            }
-            return loginDto;
-        }
+        //LoginDto IAccountService.CheckIBAN(string accountIBAN)
+        //{
+        //    LoginDto loginDto = new();
+        //    if (_accountRepository.GetAccountFromRepository(accountIBAN) is Account accountEntity)
+        //    {
+        //        Session.IBAN = accountEntity.IBAN;
+        //    }
+        //    else
+        //    {
+        //        loginDto.HasErrors = true;
+        //        loginDto.LoginError = LoginErrorEnum.AccountNotFound;
+        //        loginDto.AccountIBAN = accountIBAN;
+        //    }
+        //    return loginDto;
+        //}
+        //LoginDto IAccountService.CheckPIN(string requestPin)
+        //{
+        //    AccountModel accountModel;
+        //    LoginDto loginDto = new();
+        //    if (_accountRepository.GetAccountFromRepository(Session.IBAN!) is Account accountEntity)
+        //    {
+        //        accountModel = new(
+        //                accountEntity.Balance,
+        //                accountEntity.Movements,
+        //                accountEntity.Pin
+        //                );
+        //        if (accountModel.CorrectPin(requestPin))
+        //        {
+        //            Session.Pin = requestPin;
+        //        }
+        //        else
+        //        {
+        //            loginDto.HasErrors = true;
+        //            loginDto.LoginError = LoginErrorEnum.IncorrectPin;
+        //            loginDto.AccountIBAN = Session.IBAN!;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        loginDto.HasErrors = true;
+        //        loginDto.LoginError = LoginErrorEnum.AccountNotFound;
+        //        loginDto.AccountIBAN = Session.IBAN!; //probably null
+        //    }
+        //    return loginDto;
+        //}
 
         IncomeResultDto IAccountService.AddMoney(decimal income)
         {
             AccountModel accountModel;
-            AccountEntity? accountEntity;
+            Account? accountEntity;
             IncomeResultDto resultDto = new ();
             if (AccountModelValidator.ValidateIncome(income))
             {
