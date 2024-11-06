@@ -12,10 +12,10 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddDbContext<MyFirstDataBaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyFirstDataBaseConnection")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<MyFirstDataBaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyFirstDataBaseConnection")));
 
 var app = builder.Build();
 

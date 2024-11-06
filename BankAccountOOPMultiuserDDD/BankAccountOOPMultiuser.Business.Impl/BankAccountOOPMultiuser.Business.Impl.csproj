@@ -10,7 +10,6 @@
     <ProjectReference Include="..\BankAccountOOPMultiuser.Business.Contracts\BankAccountOOPMultiuser.Business.Contracts.csproj" />
     <ProjectReference Include="..\BankAccountOOPMultiuser.Domain.Contracts\BankAccountOOPMultiuser.Domain.Models.csproj" />
     <ProjectReference Include="..\BankAccountOOPMultiuser.Infrastructure.Contracts\BankAccountOOPMultiuser.Infrastructure.Contracts.csproj" />
-    <ProjectReference Include="..\BankAccountOOPMultiuser.XCutting.Session\BankAccountOOPMultiuser.XCutting.Session.csproj" />
   </ItemGroup>
 
 </Project>

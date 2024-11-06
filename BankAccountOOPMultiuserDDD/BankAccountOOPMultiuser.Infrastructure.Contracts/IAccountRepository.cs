@@ -6,6 +6,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts
     {
         Account AddAccountToRepository(Account account);
         public Account? GetAccountFromRepository(string accountIBAN);
-        public Account? UpdateAccountFromRepository(string accountIBAN);
+        public Account? AddMovementToAccount(Account account, Tuple<DateTime, Decimal> movement);
+        public List<Account>? GetAllAccounts();
     }
 }

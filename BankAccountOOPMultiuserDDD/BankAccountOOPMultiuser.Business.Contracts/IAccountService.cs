@@ -1,4 +1,5 @@
 ﻿using BankAccountOOPMultiuser.Business.Contracts.DTOs;
+using BankAccountOOPMultiuser.Infrastructure.Contracts.Entities;
 
 namespace BankAccountOOPMultiuser.Business.Contracts
 {
@@ -6,11 +7,17 @@ namespace BankAccountOOPMultiuser.Business.Contracts
     {
         //public LoginDto CheckPIN(string accountPIN);
         //public LoginDto CheckIBAN(string accountIBAN);
-        public decimal? GetMoney();
-        public IncomeResultDto AddMoney(decimal income);
-        public OutcomeResultDto RetireMoney(decimal outcome);
-        public ListMovementsResultDto GetMovements();
-        public ListMovementsResultDto GetIncomes();
-        public ListMovementsResultDto GetOutcomes();
+        MoneyResultDto GetMoney(string iban);
+        public IncomeResultDto AddMoney(decimal income, string iban);
+        public OutcomeResultDto RetireMoney(decimal outcome, string iban);
+        public ListMovementsResultDto GetMovements(string iban);
+        public ListMovementsResultDto GetIncomes(string iban);
+        public ListMovementsResultDto GetOutcomes(string iban);
+
+        public List<FullAccountDto>? GetAccounts();
+
+        public FullAccountDto? GetAccount(string iban);
+
+        public Account? AddAccount(Account account);
     }
 }

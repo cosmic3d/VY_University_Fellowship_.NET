@@ -1,6 +1,5 @@
-﻿using BankAccountOOPMultiuser.Infrastructure.Contracts.Datos;
-using BankAccountOOPMultiuser.Infrastructure.Contracts.Entities;
-using Microsoft.AspNetCore.Http;
+﻿using BankAccountOOPMultiuser.Business.Contracts;
+using BankAccountOOPMultiuser.Business.Contracts.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
@@ -9,18 +8,36 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        private readonly MyFirstDataBaseContext _dbContext;
-        public AccountsController(MyFirstDataBaseContext context)
+        private readonly IAccountService _accountService;
+        public AccountsController(IAccountService accountService)
         {
-            _dbContext = context;
+            _accountService = accountService;
         }
 
         [HttpGet]
-        public string GetAccounts()
+        public ActionResult<FullAccountDto> GetAccounts()
         {
-            Account account;
-            account = _dbContext.Accounts.First();
-            return $"Name: {account.Iban}{Environment.NewLine}Balance: {account.Balance}";
+            List<FullAccountDto>? accounts = _accountService.GetAccounts();
+            if (accounts is null) return StatusCode(StatusCodes.Status404NotFound, "No accounts found");
+            return Ok(accounts);
         }
+
+        [HttpGet("{iban}")]
+        public ActionResult<FullAccountDto> GetAccount(string iban)
+        {
+            FullAccountDto? account = _accountService.GetAccount(iban);
+            if (account is null) return StatusCode(StatusCodes.Status404NotFound, "Account not found");
+            return Ok(account);
+        }
+
+        //[HttpPost]
+        //public ActionResult<AccountDto> AddAccount([FromBody] AccountDto account)
+        //{
+        //    AccountDto? newAccount = _accountService.AddAccount(account);
+        //    if (newAccount is null) return StatusCode(StatusCodes.Status400BadRequest, "Account not added");
+        //    return Ok(newAccount);
+        //}
+
+
     }
 }

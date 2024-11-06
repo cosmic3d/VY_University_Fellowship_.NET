@@ -4,7 +4,8 @@
     {
         public decimal Balance;
         public List<Tuple<DateTime, decimal>> Movements;
-        private readonly string Pin;
+        public readonly string Iban;
+        public readonly string Pin;
 
         public AccountModel(decimal balance, List<Tuple<DateTime, decimal>> movements, string pin)
         {

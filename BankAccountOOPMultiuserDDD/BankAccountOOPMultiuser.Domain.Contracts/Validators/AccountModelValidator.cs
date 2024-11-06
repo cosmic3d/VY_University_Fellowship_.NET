@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace BankAccountOOPMultiuser.Domain.Models.Validators
 {
@@ -11,6 +12,9 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
         public static bool MaxIncomeSurpassedError { get; private set; }
         public static bool MaxOutcomeSurpassedError { get; private set; }
         public static bool OutcomeLeavesAccountOnRedError { get; private set; }
+        public static bool IBANMustBeginWithIBANError { get; private set; }
+        public static bool IBANLengthError { get; private set; }
+        public static bool PinMustBe4DigitsError { get; private set; }
 
         public static bool ValidateIncome(decimal income)
         {
@@ -21,11 +25,19 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
         }
 
         public static bool ValidateOutcome(decimal outcome, decimal money) {
-            NegativeOrZeroError = outcome <= 0;
+            outcome = Math.Abs(outcome);
             MaxOutcomeSurpassedError = outcome > maxOutcome;
             OutcomeLeavesAccountOnRedError = money - outcome < maxDebtAllowed;
 
-            return !NegativeOrZeroError && !MaxOutcomeSurpassedError && !OutcomeLeavesAccountOnRedError;
+            return !MaxOutcomeSurpassedError && !OutcomeLeavesAccountOnRedError;
+        }
+
+        public static bool ValidateNewAccount(AccountModel account)
+        {
+            // validate all this 'IBANMustBeginWithIBANError,
+            //    IBANLengthError,
+            //PinMustBe4DigitsError,'
+            return Regex.IsMatch(account.Iban, @"^IBAN") && (account.Iban.Length >= 8 && account.Iban.Length <= 24) && account.Pin.Length == 4;
         }
 
         public static void Reset() {
