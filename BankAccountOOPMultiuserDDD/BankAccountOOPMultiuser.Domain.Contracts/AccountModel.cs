@@ -7,15 +7,16 @@
         public readonly string Iban;
         public readonly string Pin;
 
-        public AccountModel(decimal balance, List<Tuple<DateTime, decimal>> movements, string pin)
+        public AccountModel(decimal balance, List<Tuple<DateTime, decimal>> movements,string iban, string pin)
         {
             this.Balance = balance;
             this.Movements = movements;
+            this.Iban = iban;
             this.Pin = pin;
         }
 
         public void AddIncome(decimal amount)
-        { 
+        {
             Balance += amount;
             Movements.Add(new(DateTime.Now, amount));
         }

@@ -1,5 +1,6 @@
 ﻿using BankAccountOOPMultiuser.XCutting.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace BankAccountOOPMultiuser.Business.Contracts.DTOs
@@ -9,9 +10,9 @@ namespace BankAccountOOPMultiuser.Business.Contracts.DTOs
     /// </summary>
     public class FullAccountDto
     {
-        [JsonIgnore]
+        [IgnoreDataMember]
         public bool HasErrors;
-        [JsonIgnore]
+        [IgnoreDataMember]
         public AccountErrorEnum AccountError;
         /// <summary>
         /// Account's internal identifier.

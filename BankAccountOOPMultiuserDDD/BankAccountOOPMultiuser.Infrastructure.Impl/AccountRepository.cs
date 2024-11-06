@@ -1,6 +1,7 @@
 ﻿using BankAccountOOPMultiuser.Infrastructure.Contracts;
 using BankAccountOOPMultiuser.Infrastructure.Contracts.Datos;
 using BankAccountOOPMultiuser.Infrastructure.Contracts.Entities;
+using Microsoft.EntityFrameworkCore;
 namespace BankAccountOOPMultiuser.Infrastructure.Impl
 {
     public class AccountRepository : IAccountRepository
@@ -9,7 +10,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Impl
 
         public List<Account>? GetAllAccounts()
         {
-            List<Account>? accounts = _dbContext.Accounts.ToList();
+            List<Account>? accounts = _dbContext.Accounts.Include(c => c.Movements).ToList();
             if (accounts.Count == 0) return null;
             return accounts;
         }
@@ -21,7 +22,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Impl
         }
 
         public Account? GetAccountFromRepository(string accountIBAN) =>
-            _dbContext.Accounts.Where(acc => acc.Iban.ToLower() == accountIBAN.ToLower()).FirstOrDefault();
+            _dbContext.Accounts.Include(c => c.Movements).Where(acc => acc.Iban.ToLower() == accountIBAN.ToLower()).FirstOrDefault();
 
         public Account? AddMovementToAccount(Account account, Tuple<DateTime, Decimal> movement)
         {

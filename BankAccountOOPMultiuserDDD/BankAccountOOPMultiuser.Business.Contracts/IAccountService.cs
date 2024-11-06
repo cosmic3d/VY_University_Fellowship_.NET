@@ -18,6 +18,6 @@ namespace BankAccountOOPMultiuser.Business.Contracts
 
         public FullAccountDto? GetAccount(string iban);
 
-        public Account? AddAccount(Account account);
+        FullAccountDto? AddAccount(NewAccountDto account);
     }
 }

@@ -3,20 +3,20 @@ using System.Text.RegularExpressions;
 
 namespace BankAccountOOPMultiuser.Domain.Models.Validators
 {
-    public static class AccountModelValidator
+    public class AccountModelValidator
     {
         public const decimal maxIncome = 5000;
         public const decimal maxOutcome = 1000;
         public const decimal maxDebtAllowed = -200;
-        public static bool NegativeOrZeroError { get; private set; }
-        public static bool MaxIncomeSurpassedError { get; private set; }
-        public static bool MaxOutcomeSurpassedError { get; private set; }
-        public static bool OutcomeLeavesAccountOnRedError { get; private set; }
-        public static bool IBANMustBeginWithIBANError { get; private set; }
-        public static bool IBANLengthError { get; private set; }
-        public static bool PinMustBe4DigitsError { get; private set; }
+        public bool NegativeOrZeroError { get; private set; }
+        public bool MaxIncomeSurpassedError { get; private set; }
+        public bool MaxOutcomeSurpassedError { get; private set; }
+        public bool OutcomeLeavesAccountOnRedError { get; private set; }
+        public bool IBANMustBeginWithIBANError { get; private set; }
+        public bool IBANLengthError { get; private set; }
+        public bool PinMustBe4DigitsError { get; private set; }
 
-        public static bool ValidateIncome(decimal income)
+        public bool ValidateIncome(decimal income)
         {
             NegativeOrZeroError = income <= 0;
             MaxIncomeSurpassedError = income > maxIncome;
@@ -24,7 +24,7 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
             return !NegativeOrZeroError && !MaxIncomeSurpassedError;
         }
 
-        public static bool ValidateOutcome(decimal outcome, decimal money) {
+        public bool ValidateOutcome(decimal outcome, decimal money) {
             outcome = Math.Abs(outcome);
             MaxOutcomeSurpassedError = outcome > maxOutcome;
             OutcomeLeavesAccountOnRedError = money - outcome < maxDebtAllowed;
@@ -32,19 +32,14 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
             return !MaxOutcomeSurpassedError && !OutcomeLeavesAccountOnRedError;
         }
 
-        public static bool ValidateNewAccount(AccountModel account)
+        public bool ValidateNewAccount(AccountModel account)
         {
-            // validate all this 'IBANMustBeginWithIBANError,
-            //    IBANLengthError,
-            //PinMustBe4DigitsError,'
-            return Regex.IsMatch(account.Iban, @"^IBAN") && (account.Iban.Length >= 8 && account.Iban.Length <= 24) && account.Pin.Length == 4;
-        }
-
-        public static void Reset() {
-            NegativeOrZeroError = false;
-            MaxIncomeSurpassedError = false;
-            MaxOutcomeSurpassedError = false;
-            OutcomeLeavesAccountOnRedError = false;
+            IBANMustBeginWithIBANError = !Regex.IsMatch(account.Iban, @"^IBAN");
+            IBANLengthError = !(account.Iban.Length >= 8 && account.Iban.Length <= 24);
+            PinMustBe4DigitsError = !Regex.IsMatch(account.Pin, @"^\d{4}$");
+            return !IBANMustBeginWithIBANError &&
+                   !IBANLengthError &&
+                   !PinMustBe4DigitsError;
         }
     }
 
