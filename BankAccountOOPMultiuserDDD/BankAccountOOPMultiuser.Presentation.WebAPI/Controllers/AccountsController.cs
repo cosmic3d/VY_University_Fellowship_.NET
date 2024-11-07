@@ -15,7 +15,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet(Name = "GetAllAccounts")]
+        [HttpGet]
         public ActionResult<FullAccountDto> GetAccounts()
         {
             List<FullAccountDto>? accounts = _accountService.GetAccounts();
@@ -23,7 +23,8 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(accounts);
         }
 
-        [HttpGet("{iban}", Name = "GetAccountByIban")]
+
+        [HttpGet("{iban}")]
         public ActionResult<FullAccountDto> GetAccount(string iban)
         {
             FullAccountDto? account = _accountService.GetAccount(iban);
@@ -31,7 +32,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(account);
         }
 
-        [HttpPost(Name = "AddAccount")]
+        [HttpPost("AddAccount")]
         public ActionResult<FullAccountDto> AddAccount(NewAccountDto account)
         {
             FullAccountDto? newAccount = _accountService.AddAccount(account);
@@ -55,7 +56,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(newAccount);
         }
 
-        [HttpPost("{iban}/income", Name = "AddIncome")]
+        [HttpPost("Income")]
         public ActionResult<IncomeResultDto> AddIncome(decimal income, string iban)
         {
             IncomeResultDto result = _accountService.AddMoney(income, iban);
@@ -76,7 +77,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("{iban}/outcome", Name = "AddOutcome")]
+        [HttpPost("Outcome")]
         public ActionResult<OutcomeResultDto> AddOutcome(decimal outcome, string iban)
         {
             OutcomeResultDto result = _accountService.RetireMoney(outcome, iban);
@@ -97,7 +98,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{iban}/movements", Name = "GetMovements")]
+        [HttpGet("Movements")]
         public ActionResult<ListMovementsResultDto> GetMovements(string iban)
         {
             ListMovementsResultDto result = _accountService.GetMovements(iban);
@@ -116,7 +117,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{iban}/incomes", Name = "GetIncomes")]
+        [HttpGet("Incomes")]
         public ActionResult<ListMovementsResultDto> GetIncomes(string iban)
         {
             ListMovementsResultDto result = _accountService.GetIncomes(iban);
@@ -135,7 +136,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{iban}/outcomes", Name = "GetOutcomes")]
+        [HttpGet("Outcomes")]
         public ActionResult<ListMovementsResultDto> GetOutcomes(string iban)
         {
             ListMovementsResultDto result = _accountService.GetOutcomes(iban);
@@ -154,7 +155,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{iban}/balance", Name = "GetBalance")]
+        [HttpGet("Balance")]
         public ActionResult<MoneyResultDto> GetBalance(string iban)
         {
             MoneyResultDto result = _accountService.GetMoney(iban);
@@ -169,6 +170,14 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
                 }
             }
             return Ok(result);
+        }
+
+        [HttpDelete("DeleteAccount")]
+        public ActionResult<FullAccountDto> DeleteAccount(string iban)
+        {
+            FullAccountDto deletedAccount = _accountService.DeleteAccount(iban)!;
+            if (deletedAccount.HasErrors)return StatusCode(StatusCodes.Status404NotFound, "Account not found");
+            return Ok(deletedAccount);
         }
 
 

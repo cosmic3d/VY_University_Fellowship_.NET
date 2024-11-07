@@ -47,6 +47,12 @@ namespace BankAccountOOPMultiuser.Infrastructure.Impl
             return movementList;
 
         }
+
+        public void DeleteAccountFromRepository(Account account)
+        {
+            _dbContext.Accounts.Remove(account);
+            _dbContext.SaveChanges();
+        }
     }
 
 }

@@ -34,7 +34,7 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
 
         public bool ValidateNewAccount(AccountModel account)
         {
-            IBANMustBeginWithIBANError = !Regex.IsMatch(account.Iban, @"^IBAN");
+            IBANMustBeginWithIBANError = !Regex.IsMatch(account.Iban.ToUpper(), @"^IBAN");
             IBANLengthError = !(account.Iban.Length >= 8 && account.Iban.Length <= 24);
             PinMustBe4DigitsError = !Regex.IsMatch(account.Pin, @"^\d{4}$");
             return !IBANMustBeginWithIBANError &&

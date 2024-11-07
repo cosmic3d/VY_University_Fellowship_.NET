@@ -135,6 +135,27 @@ namespace BankAccountOOPMultiuser.Business.Impl
                 return fullAccountDto;
             }
         }
+
+        FullAccountDto? IAccountService.DeleteAccount(string iban)
+        {
+            FullAccountDto fullAccountDto = new FullAccountDto();
+            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            {
+                _accountRepository.DeleteAccountFromRepository(accountEntity);
+                fullAccountDto.Id = accountEntity.Id;
+                fullAccountDto.Balance = accountEntity.Balance;
+                fullAccountDto.Iban = accountEntity.Iban;
+                fullAccountDto.Pin = accountEntity.Pin;
+                fullAccountDto.Movements = AccountRepository.MovementCollectionToList(accountEntity);
+                return fullAccountDto;
+            }
+            else
+            {
+                fullAccountDto.HasErrors = true;
+                fullAccountDto.AccountError = AccountErrorEnum.AccountNotFound;
+                return fullAccountDto;
+            }
+        }
         IncomeResultDto IAccountService.AddMoney(decimal income, string iban)
         {
             AccountModel accountModel;

@@ -8,5 +8,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts
         public Account? GetAccountFromRepository(string accountIBAN);
         public Account? AddMovementToAccount(Account account, Tuple<DateTime, Decimal> movement);
         public List<Account>? GetAllAccounts();
+
+        public void DeleteAccountFromRepository(Account account);
     }
 }

@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Presentation", "1- Presentation", "{E9905840-5998-415D-90FC-BB166B33115A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{DB9584A4-DCCE-4E86-8E8D-9C7251F2ECC1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Distributed Services", "1 - Distributed Services", "{DB9584A4-DCCE-4E86-8E8D-9C7251F2ECC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - XCutting", "5 - XCutting", "{69C1F466-5209-43AF-ADCC-00E18323202A}"
 EndProject

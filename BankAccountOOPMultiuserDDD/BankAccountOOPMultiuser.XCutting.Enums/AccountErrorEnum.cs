@@ -6,5 +6,6 @@
         IBANMustBeginWithIBANError,
         IBANLengthError,
         PinMustBe4DigitsError,
+        AccountNotFound
     }
 }
