@@ -179,7 +179,7 @@ namespace BankAccountOOPMultiuser.Business.Impl
                         );
                     accountModel.AddIncome( income );
                     accountEntity.Balance = accountModel.Balance;
-                    _accountRepository.AddMovementToAccount(accountEntity, new(DateTime.Now, income));
+                    _accountRepository.AddMovementToAccount(accountEntity, accountModel.Movements[^1]);
                     resultDto.TotalMoney = accountEntity.Balance;
                 }
             }
@@ -207,7 +207,7 @@ namespace BankAccountOOPMultiuser.Business.Impl
                         );
                     accountModel.AddOutcome(outcome);
                     accountEntity.Balance = accountModel.Balance;
-                    _accountRepository.AddMovementToAccount(accountEntity, new(DateTime.Now, outcome));
+                    _accountRepository.AddMovementToAccount(accountEntity, accountModel.Movements[^1]);
                     resultDto.TotalMoney = accountEntity.Balance;
                 }
                 else

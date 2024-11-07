@@ -25,8 +25,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccountOOPMultiuser.XCu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccountOOPMultiuser.Business.Impl", "BankAccountOOPMultiuser.Business.Impl\BankAccountOOPMultiuser.Business.Impl.csproj", "{85BC2711-95B0-488D-8E96-0032AB4FD43E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccountOOPMultiuser.Presentation.WebAPI", "BankAccountOOPMultiuser.Presentation.WebAPI\BankAccountOOPMultiuser.Presentation.WebAPI.csproj", "{2988F457-50BD-4191-BFF1-271B4C4605BD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccountOOPMultiuser.Infrastructure.Contracts", "BankAccountOOPMultiuser.Infrastructure.Contracts\BankAccountOOPMultiuser.Infrastructure.Contracts.csproj", "{B970684D-1C3C-4FAC-9BD8-C895C1F6B61B}"
 EndProject
 Global
@@ -55,10 +53,6 @@ Global
 		{85BC2711-95B0-488D-8E96-0032AB4FD43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85BC2711-95B0-488D-8E96-0032AB4FD43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85BC2711-95B0-488D-8E96-0032AB4FD43E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2988F457-50BD-4191-BFF1-271B4C4605BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2988F457-50BD-4191-BFF1-271B4C4605BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2988F457-50BD-4191-BFF1-271B4C4605BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2988F457-50BD-4191-BFF1-271B4C4605BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B970684D-1C3C-4FAC-9BD8-C895C1F6B61B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B970684D-1C3C-4FAC-9BD8-C895C1F6B61B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B970684D-1C3C-4FAC-9BD8-C895C1F6B61B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,7 +67,6 @@ Global
 		{1F93A869-065C-4BA2-8BFA-1C351598F06D} = {CBA7D104-0FD7-4937-A9D2-5412677A001E}
 		{B27CB572-EC26-4070-8802-2836D85F5603} = {69C1F466-5209-43AF-ADCC-00E18323202A}
 		{85BC2711-95B0-488D-8E96-0032AB4FD43E} = {CBA7D104-0FD7-4937-A9D2-5412677A001E}
-		{2988F457-50BD-4191-BFF1-271B4C4605BD} = {DB9584A4-DCCE-4E86-8E8D-9C7251F2ECC1}
 		{B970684D-1C3C-4FAC-9BD8-C895C1F6B61B} = {65A0FA59-1307-4747-82D8-9633B0726E88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
