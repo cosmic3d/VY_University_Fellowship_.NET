@@ -15,6 +15,7 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
         public bool IBANMustBeginWithIBANError { get; private set; }
         public bool IBANLengthError { get; private set; }
         public bool PinMustBe4DigitsError { get; private set; }
+        public bool IBANMustContainNumbersAfterIBANError { get; private set; }
 
         public bool ValidateIncome(decimal income)
         {
@@ -26,6 +27,7 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
 
         public bool ValidateOutcome(decimal outcome, decimal money) {
             outcome = Math.Abs(outcome);
+            NegativeOrZeroError = outcome <= 0;
             MaxOutcomeSurpassedError = outcome > maxOutcome;
             OutcomeLeavesAccountOnRedError = money - outcome < maxDebtAllowed;
 
@@ -37,9 +39,11 @@ namespace BankAccountOOPMultiuser.Domain.Models.Validators
             IBANMustBeginWithIBANError = !Regex.IsMatch(account.Iban.ToUpper(), @"^IBAN");
             IBANLengthError = !(account.Iban.Length >= 8 && account.Iban.Length <= 24);
             PinMustBe4DigitsError = !Regex.IsMatch(account.Pin, @"^\d{4}$");
+            IBANMustContainNumbersAfterIBANError = !Regex.IsMatch(account.Iban.Substring(4), @"^\d+$");
             return !IBANMustBeginWithIBANError &&
                    !IBANLengthError &&
-                   !PinMustBe4DigitsError;
+                   !PinMustBe4DigitsError &&
+                   !IBANMustContainNumbersAfterIBANError;
         }
     }
 

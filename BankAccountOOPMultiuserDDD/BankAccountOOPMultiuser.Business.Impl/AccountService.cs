@@ -213,7 +213,9 @@ namespace BankAccountOOPMultiuser.Business.Impl
                 else
                 {
                     resultDto.HasErrors = true;
-                    resultDto.OutcomeResultError = _validator.MaxOutcomeSurpassedError ? OutcomeErrorEnum.MaxOutcomeSurpassed : OutcomeErrorEnum.OutcomeLeavesAccountOnRed;
+                    resultDto.OutcomeResultError = _validator.MaxOutcomeSurpassedError ? OutcomeErrorEnum.MaxOutcomeSurpassed 
+                    : _validator.NegativeOrZeroError ? OutcomeErrorEnum.NegativeOrZero
+                    : OutcomeErrorEnum.OutcomeLeavesAccountOnRed;
                     resultDto.MaxOutcomeAllowed = AccountModelValidator.maxOutcome;
                     resultDto.MaxDebtAllowed = AccountModelValidator.maxDebtAllowed;
                 }
