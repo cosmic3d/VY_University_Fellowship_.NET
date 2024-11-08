@@ -8,23 +8,23 @@ namespace BankAccountOOPMultiuser.Infrastructure.Impl
     {
         private readonly MyFirstDataBaseContext _dbContext = new();
 
-        public List<Account>? GetAllAccounts()
+        public List<AccountEntity>? GetAllAccounts()
         {
-            List<Account>? accounts = _dbContext.Accounts.Include(c => c.Movements).ToList();
+            List<AccountEntity>? accounts = _dbContext.Accounts.Include(c => c.Movements).ToList();
             if (accounts.Count == 0) return null;
             return accounts;
         }
-        public Account AddAccountToRepository(Account account)
+        public AccountEntity AddAccountToRepository(AccountEntity account)
         { 
             _dbContext.Accounts.Add(account);
             _dbContext.SaveChanges();
             return account;
         }
 
-        public Account? GetAccountFromRepository(string accountIBAN) =>
+        public AccountEntity? GetAccountFromRepository(string accountIBAN) =>
             _dbContext.Accounts.Include(c => c.Movements).Where(acc => acc.Iban.ToLower() == accountIBAN.ToLower()).FirstOrDefault();
 
-        public Account? AddMovementToAccount(Account account, Tuple<DateTime, Decimal> movement)
+        public AccountEntity? AddMovementToAccount(AccountEntity account, Tuple<DateTime, Decimal> movement)
         {
             if (account is null || movement is null) return null;
             Movement newMovement = new()
@@ -37,7 +37,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Impl
             return account;
         }
 
-        public static List<Tuple<DateTime, Decimal>> MovementCollectionToList(Account account)
+        public static List<Tuple<DateTime, Decimal>> MovementCollectionToList(AccountEntity account)
         {
             List<Tuple<DateTime, Decimal>> movementList = new();
             foreach (var movement in account.Movements)
@@ -48,7 +48,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Impl
 
         }
 
-        public void DeleteAccountFromRepository(Account account)
+        public void DeleteAccountFromRepository(AccountEntity account)
         {
             _dbContext.Accounts.Remove(account);
             _dbContext.SaveChanges();

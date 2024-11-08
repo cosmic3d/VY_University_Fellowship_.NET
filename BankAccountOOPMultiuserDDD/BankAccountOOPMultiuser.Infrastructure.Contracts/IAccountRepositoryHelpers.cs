@@ -2,5 +2,5 @@
 
 internal interface IAccountRepositoryHelpers
 {
-    List<Tuple<DateTime, decimal>> MovementCollectionToList(Account account);
+    List<Tuple<DateTime, decimal>> MovementCollectionToList(AccountEntity account);
 }

@@ -10,6 +10,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts.Entities
 {
     [Table("Movement")]
     public partial class Movement
+
     {
         [Key]
         public int Id { get; set; }
@@ -21,6 +22,6 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts.Entities
 
         [ForeignKey("AccountId")]
         [InverseProperty("Movements")]
-        public virtual Account Account { get; set; }
+        public virtual AccountEntity Account { get; set; }
     }
 }

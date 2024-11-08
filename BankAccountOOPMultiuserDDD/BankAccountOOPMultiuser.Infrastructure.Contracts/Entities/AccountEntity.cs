@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BankAccountOOPMultiuser.Infrastructure.Contracts.Entities
 {
     [Table("Account")]
-    public partial class Account
+    public partial class AccountEntity
     {
-        public Account()
+        public AccountEntity()
         {
             Movements = new HashSet<Movement>();
         }

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{65A0FA59-1307-4747-82D8-9633B0726E88}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Bussiness", "2 - Bussiness", "{CBA7D104-0FD7-4937-A9D2-5412677A001E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Business", "2 - Business", "{CBA7D104-0FD7-4937-A9D2-5412677A001E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{55676D3D-0783-4254-97F2-9608CF545683}"
 EndProject

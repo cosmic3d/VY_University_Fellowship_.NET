@@ -4,11 +4,11 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts
 {
     public interface IAccountRepository
     {
-        Account AddAccountToRepository(Account account);
-        public Account? GetAccountFromRepository(string accountIBAN);
-        public Account? AddMovementToAccount(Account account, Tuple<DateTime, Decimal> movement);
-        public List<Account>? GetAllAccounts();
+        AccountEntity AddAccountToRepository(AccountEntity account);
+        public AccountEntity? GetAccountFromRepository(string accountIBAN);
+        public AccountEntity? AddMovementToAccount(AccountEntity account, Tuple<DateTime, Decimal> movement);
+        public List<AccountEntity>? GetAllAccounts();
 
-        public void DeleteAccountFromRepository(Account account);
+        public void DeleteAccountFromRepository(AccountEntity account);
     }
 }

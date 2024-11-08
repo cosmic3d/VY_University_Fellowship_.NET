@@ -19,7 +19,7 @@ namespace BankAccountOOPMultiuser.Infrastructure.Contracts.Datos
         {
         }
 
-        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<AccountEntity> Accounts { get; set; }
         public virtual DbSet<Movement> Movements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -19,56 +19,10 @@ namespace BankAccountOOPMultiuser.Business.Impl
             _validator = new AccountModelValidator();
         }
 
-        //LoginDto IAccountService.CheckIBAN(string accountIBAN)
-        //{
-        //    LoginDto loginDto = new();
-        //    if (_accountRepository.GetAccountFromRepository(accountIBAN) is Account accountEntity)
-        //    {
-        //        Session.IBAN = accountEntity.IBAN;
-        //    }
-        //    else
-        //    {
-        //        loginDto.HasErrors = true;
-        //        loginDto.LoginError = LoginErrorEnum.AccountNotFound;
-        //        loginDto.AccountIBAN = accountIBAN;
-        //    }
-        //    return loginDto;
-        //}
-        //LoginDto IAccountService.CheckPIN(string requestPin)
-        //{
-        //    AccountModel accountModel;
-        //    LoginDto loginDto = new();
-        //    if (_accountRepository.GetAccountFromRepository(Session.IBAN!) is Account accountEntity)
-        //    {
-        //        accountModel = new(
-        //                accountEntity.Balance,
-        //                accountEntity.Movements,
-        //                accountEntity.Pin
-        //                );
-        //        if (accountModel.CorrectPin(requestPin))
-        //        {
-        //            Session.Pin = requestPin;
-        //        }
-        //        else
-        //        {
-        //            loginDto.HasErrors = true;
-        //            loginDto.LoginError = LoginErrorEnum.IncorrectPin;
-        //            loginDto.AccountIBAN = Session.IBAN!;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        loginDto.HasErrors = true;
-        //        loginDto.LoginError = LoginErrorEnum.AccountNotFound;
-        //        loginDto.AccountIBAN = Session.IBAN!; //probably null
-        //    }
-        //    return loginDto;
-        //}
-
         //method for retrieving all the accounts
-        List<FullAccountDto>? IAccountService.GetAccounts()
+        public List<FullAccountDto>? GetAccounts()
         {
-            List<Account>? accounts = _accountRepository.GetAllAccounts();
+            List<AccountEntity>? accounts = _accountRepository.GetAllAccounts();
             if (accounts == null || accounts.Count() == 0) return null;
             List<FullAccountDto> fullAccountDtos = new();
             foreach (var account in accounts)
@@ -85,9 +39,9 @@ namespace BankAccountOOPMultiuser.Business.Impl
             return fullAccountDtos;
         }
 
-        FullAccountDto? IAccountService.GetAccount(string iban)
+        public FullAccountDto? GetAccount(string iban)
         {
-            Account? account = _accountRepository.GetAccountFromRepository(iban);
+            AccountEntity? account = _accountRepository.GetAccountFromRepository(iban);
             if (account == null) return null;
             return new FullAccountDto()
             {
@@ -99,11 +53,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
             };
         }
 
-        FullAccountDto? IAccountService.AddAccount(NewAccountDto account)
+        public FullAccountDto? AddAccount(NewAccountDto account)
         {
             FullAccountDto fullAccountDto = new FullAccountDto();
             if (account == null) return null;
-            else if (_accountRepository.GetAccountFromRepository(account.Iban) is Account accountEntity)
+            else if (_accountRepository.GetAccountFromRepository(account.Iban) is AccountEntity accountEntity)
             {
                 fullAccountDto.HasErrors = true;
                 fullAccountDto.AccountError = AccountErrorEnum.AccountAlreadyExistsError;
@@ -112,11 +66,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
             AccountModel accountModel = new(0, new(), account.Iban, account.Pin);
             if (_validator.ValidateNewAccount(accountModel))
             {
-                Account newAccount = new()
+                AccountEntity newAccount = new()
                 {
                     Balance = accountModel.Balance,
                     Iban = accountModel.Iban,
-                    Pin = accountModel.Pin
+                    Pin = accountModel.Pin  
                 };
                 _accountRepository.AddAccountToRepository(newAccount);
                 fullAccountDto.Id = newAccount.Id;
@@ -136,10 +90,10 @@ namespace BankAccountOOPMultiuser.Business.Impl
             }
         }
 
-        FullAccountDto? IAccountService.DeleteAccount(string iban)
+        public FullAccountDto? DeleteAccount(string iban)
         {
             FullAccountDto fullAccountDto = new FullAccountDto();
-            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            if (_accountRepository.GetAccountFromRepository(iban) is AccountEntity accountEntity)
             {
                 _accountRepository.DeleteAccountFromRepository(accountEntity);
                 fullAccountDto.Id = accountEntity.Id;
@@ -156,10 +110,10 @@ namespace BankAccountOOPMultiuser.Business.Impl
                 return fullAccountDto;
             }
         }
-        IncomeResultDto IAccountService.AddMoney(decimal income, string iban)
+        public IncomeResultDto AddMoney(decimal income, string iban)
         {
             AccountModel accountModel;
-            Account? accountEntity;
+            AccountEntity? accountEntity;
             IncomeResultDto resultDto = new ();
             if (_validator.ValidateIncome(income))
             {
@@ -191,11 +145,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
             }
             return resultDto;
         }
-        OutcomeResultDto IAccountService.RetireMoney(decimal outcome, string iban)
+        public OutcomeResultDto RetireMoney(decimal outcome, string iban)
         {
             AccountModel accountModel;
             OutcomeResultDto resultDto = new();
-            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            if (_accountRepository.GetAccountFromRepository(iban) is AccountEntity accountEntity)
             {
                 if (_validator.ValidateOutcome(outcome, accountEntity.Balance))
                 {
@@ -229,11 +183,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
         }
 
 
-        ListMovementsResultDto IAccountService.GetMovements(string iban)
+        public ListMovementsResultDto GetMovements(string iban)
         {
             AccountModel accountModel;
             ListMovementsResultDto resultDto = new ();
-            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            if (_accountRepository.GetAccountFromRepository(iban) is AccountEntity accountEntity)
             {
                 resultDto.TotalMoney = accountEntity.Balance;
                 accountModel = new(
@@ -260,11 +214,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
             return resultDto;
         }
 
-        ListMovementsResultDto IAccountService.GetIncomes(string iban)
+        public ListMovementsResultDto GetIncomes(string iban)
         {
             AccountModel accountModel;
             ListMovementsResultDto resultDto = new();
-            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            if (_accountRepository.GetAccountFromRepository(iban) is AccountEntity accountEntity)
             {
                 resultDto.TotalMoney = accountEntity.Balance;
                 accountModel = new(
@@ -291,11 +245,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
             return resultDto;
         }
 
-        ListMovementsResultDto IAccountService.GetOutcomes(string iban)
+        public ListMovementsResultDto GetOutcomes(string iban)
         {
             AccountModel accountModel;
             ListMovementsResultDto resultDto = new();
-            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            if (_accountRepository.GetAccountFromRepository(iban) is AccountEntity accountEntity)
             {
                 resultDto.TotalMoney = accountEntity.Balance;
                 accountModel = new(
@@ -321,11 +275,11 @@ namespace BankAccountOOPMultiuser.Business.Impl
             }
             return resultDto;
         }
-        MoneyResultDto IAccountService.GetMoney(string iban)
+        public MoneyResultDto GetMoney(string iban)
         {
             AccountModel accountModel;
             MoneyResultDto resultDto = new();
-            if (_accountRepository.GetAccountFromRepository(iban) is Account accountEntity)
+            if (_accountRepository.GetAccountFromRepository(iban) is AccountEntity accountEntity)
             {
                 resultDto.TotalMoney = accountEntity.Balance;
                 accountModel = new(
