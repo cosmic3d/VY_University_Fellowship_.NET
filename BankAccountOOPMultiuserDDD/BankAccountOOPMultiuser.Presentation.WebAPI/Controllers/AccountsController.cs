@@ -45,7 +45,7 @@ namespace BankAccountOOPMultiuser.Presentation.WebAPI.Controllers
                         return StatusCode(StatusCodes.Status409Conflict, "IBAN already exists");
                     case AccountErrorEnum.IBANMustBeginWithIBANError:
                         return StatusCode(StatusCodes.Status400BadRequest, "IBAN must begin with IBAN");
-                    case AccountErrorEnum.IBANLengthError:
+                    case AccountErrorEnum.IBANLengthInvalidError:
                         return StatusCode(StatusCodes.Status400BadRequest, "IBAN length must have a minimum length of 8 characters and a maximum length of 24 characters");
                     case AccountErrorEnum.PinMustBe4DigitsError:
                         return StatusCode(StatusCodes.Status400BadRequest, "PIN must be a 4 digit number");

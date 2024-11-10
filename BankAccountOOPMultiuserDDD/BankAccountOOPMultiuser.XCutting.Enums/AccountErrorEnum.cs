@@ -4,7 +4,7 @@
     {
         AccountAlreadyExistsError,
         IBANMustBeginWithIBANError,
-        IBANLengthError,
+        IBANLengthInvalidError,
         PinMustBe4DigitsError,
         AccountNotFound
     }

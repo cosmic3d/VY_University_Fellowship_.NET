@@ -84,7 +84,7 @@ namespace BankAccountOOPMultiuser.Business.Impl
             {
                 fullAccountDto.HasErrors = true;
                 fullAccountDto.AccountError = _validator.IBANMustBeginWithIBANError ? AccountErrorEnum.IBANMustBeginWithIBANError
-                                              : _validator.IBANLengthError ? AccountErrorEnum.IBANLengthError
+                                              : _validator.IBANLengthError ? AccountErrorEnum.IBANLengthInvalidError
                                               : AccountErrorEnum.PinMustBe4DigitsError;
                 return fullAccountDto;
             }
