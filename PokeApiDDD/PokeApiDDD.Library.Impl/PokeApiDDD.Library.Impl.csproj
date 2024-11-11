@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PokeApiDDD.Domain.Models\PokeApiDDD.Domain.Models.csproj" />
+    <ProjectReference Include="..\PokeApiDDD.Infrastructure.Contracts\PokeApiDDD.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\PokeApiDDD.Infrastructure.Impl\PokeApiDDD.Infrastructure.Impl.csproj" />
+    <ProjectReference Include="..\PokeApiDDD.Library.Contracts\PokeApiDDD.Library.Contracts.csproj" />
+    <ProjectReference Include="..\PokeApiDDD\PokeApiDDD.csproj" />
+  </ItemGroup>
+
+</Project>
