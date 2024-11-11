@@ -17,6 +17,7 @@ namespace PokeApiDDD.Infrastructure.Impl.DB
                 Counter = count
             }
             );
+            _dbContext.SaveChanges();
         }
 
         public List<string>? GetAllPokemons()
