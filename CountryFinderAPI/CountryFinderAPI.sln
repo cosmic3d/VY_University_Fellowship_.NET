@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.DistributedServices.WebAPI", "CountryFinderAPI\CountryFinderAPI.DistributedServices.WebAPI.csproj", "{C3AE8BCB-E6F6-4879-8C04-29E1F76C687C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - DistributedServices", "1 - DistributedServices", "{5D810BE0-89F7-4B3A-9B5F-F662DBBC253F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Library", "2 - Library", "{CF6FA72F-0DCA-406F-884A-F4C09C21B47F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{E773BBE4-4E93-448E-8EE5-9AD03E11859E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{5D7685D7-12B0-4327-9212-843E0F66BE7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - XCutting", "5 - XCutting", "{98EBF8C7-9149-447B-8CF9-F6D63788FCDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.Infrastructure.Contracts", "CountryFinderAPI.Infrastructure.Contracts\CountryFinderAPI.Infrastructure.Contracts.csproj", "{E088B248-6262-409B-8B60-A144E3E5B9F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.Infrastructure.Impl", "CountryFinderAPI.Infrastructure.Impl\CountryFinderAPI.Infrastructure.Impl.csproj", "{5A41287A-0975-4432-BA26-17437D39A997}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.Domain.Models", "CountryFinderAPI.Domain.Models\CountryFinderAPI.Domain.Models.csproj", "{E6BC68B7-6D07-49CF-B663-0D406AC4A218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.Library.Contracts", "CountryFinderAPI.Library.Contracts\CountryFinderAPI.Library.Contracts.csproj", "{7A19C3B0-A942-4371-BCBD-639057EBFB36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.Library.Impl", "CountryFinderAPI.Library.Impl\CountryFinderAPI.Library.Impl.csproj", "{38C20B2A-D7F0-4511-AF8D-0B78FF6A83A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.XCutting.Enums", "CountryFinderAPI.XCutting.Enums\CountryFinderAPI.XCutting.Enums.csproj", "{D4C34481-E338-447B-9E9C-15794411EDFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Testing", "6 - Testing", "{CB84331B-8B08-418D-A702-F4D2992962E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryFinderAPI.Testing.UnitTesting", "CountryFinderAPI.Testing.UnitTesting\CountryFinderAPI.Testing.UnitTesting.csproj", "{62681020-F25B-4F8A-9EFF-8564484F816B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3AE8BCB-E6F6-4879-8C04-29E1F76C687C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3AE8BCB-E6F6-4879-8C04-29E1F76C687C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3AE8BCB-E6F6-4879-8C04-29E1F76C687C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3AE8BCB-E6F6-4879-8C04-29E1F76C687C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E088B248-6262-409B-8B60-A144E3E5B9F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E088B248-6262-409B-8B60-A144E3E5B9F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E088B248-6262-409B-8B60-A144E3E5B9F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E088B248-6262-409B-8B60-A144E3E5B9F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A41287A-0975-4432-BA26-17437D39A997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A41287A-0975-4432-BA26-17437D39A997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A41287A-0975-4432-BA26-17437D39A997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A41287A-0975-4432-BA26-17437D39A997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6BC68B7-6D07-49CF-B663-0D406AC4A218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6BC68B7-6D07-49CF-B663-0D406AC4A218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6BC68B7-6D07-49CF-B663-0D406AC4A218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6BC68B7-6D07-49CF-B663-0D406AC4A218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A19C3B0-A942-4371-BCBD-639057EBFB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A19C3B0-A942-4371-BCBD-639057EBFB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A19C3B0-A942-4371-BCBD-639057EBFB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A19C3B0-A942-4371-BCBD-639057EBFB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38C20B2A-D7F0-4511-AF8D-0B78FF6A83A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38C20B2A-D7F0-4511-AF8D-0B78FF6A83A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38C20B2A-D7F0-4511-AF8D-0B78FF6A83A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38C20B2A-D7F0-4511-AF8D-0B78FF6A83A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C34481-E338-447B-9E9C-15794411EDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C34481-E338-447B-9E9C-15794411EDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C34481-E338-447B-9E9C-15794411EDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C34481-E338-447B-9E9C-15794411EDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62681020-F25B-4F8A-9EFF-8564484F816B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62681020-F25B-4F8A-9EFF-8564484F816B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62681020-F25B-4F8A-9EFF-8564484F816B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62681020-F25B-4F8A-9EFF-8564484F816B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3AE8BCB-E6F6-4879-8C04-29E1F76C687C} = {5D810BE0-89F7-4B3A-9B5F-F662DBBC253F}
+		{E088B248-6262-409B-8B60-A144E3E5B9F1} = {5D7685D7-12B0-4327-9212-843E0F66BE7B}
+		{5A41287A-0975-4432-BA26-17437D39A997} = {5D7685D7-12B0-4327-9212-843E0F66BE7B}
+		{E6BC68B7-6D07-49CF-B663-0D406AC4A218} = {E773BBE4-4E93-448E-8EE5-9AD03E11859E}
+		{7A19C3B0-A942-4371-BCBD-639057EBFB36} = {CF6FA72F-0DCA-406F-884A-F4C09C21B47F}
+		{38C20B2A-D7F0-4511-AF8D-0B78FF6A83A7} = {CF6FA72F-0DCA-406F-884A-F4C09C21B47F}
+		{D4C34481-E338-447B-9E9C-15794411EDFB} = {98EBF8C7-9149-447B-8CF9-F6D63788FCDF}
+		{62681020-F25B-4F8A-9EFF-8564484F816B} = {CB84331B-8B08-418D-A702-F4D2992962E1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79496F18-8C60-451E-A51B-CAEBAE463B23}
+	EndGlobalSection
+EndGlobal

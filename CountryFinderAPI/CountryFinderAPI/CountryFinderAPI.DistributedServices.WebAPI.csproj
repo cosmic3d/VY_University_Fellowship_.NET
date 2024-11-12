@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CountryFinderAPI.Infrastructure.Contracts\CountryFinderAPI.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\CountryFinderAPI.Infrastructure.Impl\CountryFinderAPI.Infrastructure.Impl.csproj" />
+    <ProjectReference Include="..\CountryFinderAPI.Library.Contracts\CountryFinderAPI.Library.Contracts.csproj" />
+    <ProjectReference Include="..\CountryFinderAPI.Library.Impl\CountryFinderAPI.Library.Impl.csproj" />
+    <ProjectReference Include="..\CountryFinderAPI.XCutting.Enums\CountryFinderAPI.XCutting.Enums.csproj" />
+  </ItemGroup>
+
+</Project>
