@@ -9,6 +9,8 @@ namespace CountryFinderAPI.XCutting.Enums
     public enum CountryFinderErrorEnum
     {
         UnableToReachEndpoint,
+        IncorrectInitialFormat,
+        IncorrectYearFormat,
         UnexpectedErrorOccurred
     }
 }

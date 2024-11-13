@@ -15,6 +15,6 @@ namespace CountryFinderAPI.Infrastructure.Contracts.Entities
         [JsonPropertyName("msg")]
         public string Msg { get; set; }
         [JsonPropertyName("data")]
-        public Country[] Data { get; set; }
+        public List<Country> Data { get; set; }
     }
 }

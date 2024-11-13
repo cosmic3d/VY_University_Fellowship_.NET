@@ -9,6 +9,6 @@ namespace CountryFinderAPI.Library.Contracts
 {
     public interface ICountryFinderService
     {
-        public CountryListDto GetCountriesByInitialAndYear(char c, int year);
+        public CountryListDto GetCountriesByInitialAndYear(string c, string year);
     }
 }

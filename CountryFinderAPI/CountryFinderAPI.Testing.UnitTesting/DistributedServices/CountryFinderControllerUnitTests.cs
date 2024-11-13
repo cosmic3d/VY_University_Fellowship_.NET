@@ -9,6 +9,11 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
 {
     public class CountryFinderControllerUnitTests
     {
+        const string VALID_YEAR = "1995";
+        const string INVALID_YEAR = "-2005";
+
+        const string VALID_INITIAL = "c";
+        const string INVALID_INITIAL = "colacao";
         #region GetCountriesByInitialAndYear
         [Fact]
         public void GetCountriesByInitialAndYear_WhenHappyPath_ReturnsOk()
@@ -17,14 +22,14 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
             Mock<ICountryFinderService> mockCountryFinderService = new();
 
             mockCountryFinderService
-                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<char>(), It.IsAny<int>()))
+                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(new CountryListDto());
 
             CountryFinderController sut = new CountryFinderController(mockCountryFinderService.Object);
 
             // Act
 
-            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear("c", 1961);
+            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear(VALID_INITIAL, VALID_YEAR);
 
             // Assert
 
@@ -39,14 +44,18 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
             Mock<ICountryFinderService> mockCountryFinderService = new();
 
             mockCountryFinderService
-                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<char>(), It.IsAny<int>()))
-                .Returns(new CountryListDto());
+                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new CountryListDto()
+                {
+                    HasErrors = true,
+                    Error = CountryFinderErrorEnum.IncorrectYearFormat,
+                });
 
             CountryFinderController sut = new CountryFinderController(mockCountryFinderService.Object);
 
             // Act
 
-            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear("c", -1995);
+            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear(VALID_INITIAL, INVALID_YEAR);
 
             // Assert
 
@@ -61,14 +70,18 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
             Mock<ICountryFinderService> mockCountryFinderService = new();
 
             mockCountryFinderService
-                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<char>(), It.IsAny<int>()))
-                .Returns(new CountryListDto());
+                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new CountryListDto()
+                {
+                    HasErrors = true,
+                    Error = CountryFinderErrorEnum.IncorrectInitialFormat,
+                });
 
             CountryFinderController sut = new CountryFinderController(mockCountryFinderService.Object);
 
             // Act
 
-            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear("7", 1995);
+            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear(INVALID_INITIAL, VALID_YEAR);
 
             // Assert
 
@@ -83,7 +96,7 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
             Mock<ICountryFinderService> mockCountryFinderService = new();
 
             mockCountryFinderService
-                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<char>(), It.IsAny<int>()))
+                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(new CountryListDto()
                 {
                     HasErrors = true,
@@ -94,7 +107,7 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
 
             // Act
 
-            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear("c", -1995);
+            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear(VALID_INITIAL, VALID_YEAR);
 
             // Assert
 
@@ -109,7 +122,7 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
             Mock<ICountryFinderService> mockCountryFinderService = new();
 
             mockCountryFinderService
-                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<char>(), It.IsAny<int>()))
+                .Setup(x => x.GetCountriesByInitialAndYear(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(new CountryListDto()
                 {
                     HasErrors = true,
@@ -120,7 +133,7 @@ namespace CountryFinderAPI.Testing.UnitTesting.DistributedServices
 
             // Act
 
-            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear("c", -1995);
+            ActionResult<List<CountryDto>> result = sut.GetCountriesByInitialAndYear(VALID_INITIAL, VALID_YEAR);
 
             // Assert
 

@@ -4,6 +4,6 @@ namespace CountryFinderAPI.Infrastructure.Contracts
 {
     public interface ICountryFinderRepository
     {
-        public Task<List<Country>?> GetCountriesByLetterAndYearAsync();
+        public Task<List<Country>?> GetCountriesByLetterAndYearAsync(char c, int year);
     }
 }
