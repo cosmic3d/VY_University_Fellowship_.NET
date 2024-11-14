@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - DistributedServices", "1 - DistributedServices", "{62F94D0A-B40E-41DD-B7AF-492883564DAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Library", "2 - Library", "{71F9FD02-0088-4C62-A747-70599529E6E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{9C861BA3-A151-4591-8DEB-E5A0C077EEAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{B015649A-59B2-4A53-B039-EFAF9EC0AD0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - XCutting", "5 - XCutting", "{B5776233-7506-4497-85A8-AE2274D0EFED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Testing", "6 - Testing", "{4C6857A0-B2D9-4ABD-87B7-78F5F899BA9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.Infrastructure.Contracts", "StarWarsAPITest.Infrastructure.Contracts\StarWarsAPITest.Infrastructure.Contracts.csproj", "{BBBBB11B-1B77-4F8B-AE12-C7186D52AB45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.Infrastructure.Impl", "StarWarsAPITest.Infrastructure.Impl\StarWarsAPITest.Infrastructure.Impl.csproj", "{4E333A57-A349-4142-A0FD-07EF890F0A7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.Domain.Models", "StarWarsAPITest.Domain.Models\StarWarsAPITest.Domain.Models.csproj", "{FDEAFBB7-8829-4B2B-B706-586EF570FC46}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.Library.Contracts", "StarWarsAPITest.Library.Contracts\StarWarsAPITest.Library.Contracts.csproj", "{E89C4683-7707-4002-BF60-4BD6FF8F5F9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.XCutting.Enums", "StarWarsAPITest.XCutting.Enums\StarWarsAPITest.XCutting.Enums.csproj", "{8BE05AF5-1020-4F52-B535-4660214AF2DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.DistributedServices.PlanetAPI", "StarWarsAPITest.DistributedServices.PlanetAPI\StarWarsAPITest.DistributedServices.PlanetAPI.csproj", "{704A8840-5FAC-4B1E-859F-6CF95B30F373}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsAPITest.Library.Impl", "StarWarsAPITest.Library.Impl\StarWarsAPITest.Library.Impl.csproj", "{1CF2BB40-B0AA-4728-B824-0309A31FC5FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsAPITest.Testing.UnitTesting", "StarWarsAPITest.Testing.UnitTesting\StarWarsAPITest.Testing.UnitTesting.csproj", "{565D3B6B-6266-4325-8133-0EFBDF2200BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBBBB11B-1B77-4F8B-AE12-C7186D52AB45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBBB11B-1B77-4F8B-AE12-C7186D52AB45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBBB11B-1B77-4F8B-AE12-C7186D52AB45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBBB11B-1B77-4F8B-AE12-C7186D52AB45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E333A57-A349-4142-A0FD-07EF890F0A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E333A57-A349-4142-A0FD-07EF890F0A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E333A57-A349-4142-A0FD-07EF890F0A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E333A57-A349-4142-A0FD-07EF890F0A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDEAFBB7-8829-4B2B-B706-586EF570FC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDEAFBB7-8829-4B2B-B706-586EF570FC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDEAFBB7-8829-4B2B-B706-586EF570FC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDEAFBB7-8829-4B2B-B706-586EF570FC46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89C4683-7707-4002-BF60-4BD6FF8F5F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89C4683-7707-4002-BF60-4BD6FF8F5F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89C4683-7707-4002-BF60-4BD6FF8F5F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89C4683-7707-4002-BF60-4BD6FF8F5F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE05AF5-1020-4F52-B535-4660214AF2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE05AF5-1020-4F52-B535-4660214AF2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE05AF5-1020-4F52-B535-4660214AF2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE05AF5-1020-4F52-B535-4660214AF2DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704A8840-5FAC-4B1E-859F-6CF95B30F373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704A8840-5FAC-4B1E-859F-6CF95B30F373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704A8840-5FAC-4B1E-859F-6CF95B30F373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704A8840-5FAC-4B1E-859F-6CF95B30F373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF2BB40-B0AA-4728-B824-0309A31FC5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF2BB40-B0AA-4728-B824-0309A31FC5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF2BB40-B0AA-4728-B824-0309A31FC5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF2BB40-B0AA-4728-B824-0309A31FC5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565D3B6B-6266-4325-8133-0EFBDF2200BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565D3B6B-6266-4325-8133-0EFBDF2200BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565D3B6B-6266-4325-8133-0EFBDF2200BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565D3B6B-6266-4325-8133-0EFBDF2200BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBBBB11B-1B77-4F8B-AE12-C7186D52AB45} = {B015649A-59B2-4A53-B039-EFAF9EC0AD0C}
+		{4E333A57-A349-4142-A0FD-07EF890F0A7F} = {B015649A-59B2-4A53-B039-EFAF9EC0AD0C}
+		{FDEAFBB7-8829-4B2B-B706-586EF570FC46} = {9C861BA3-A151-4591-8DEB-E5A0C077EEAC}
+		{E89C4683-7707-4002-BF60-4BD6FF8F5F9F} = {71F9FD02-0088-4C62-A747-70599529E6E4}
+		{8BE05AF5-1020-4F52-B535-4660214AF2DA} = {B5776233-7506-4497-85A8-AE2274D0EFED}
+		{704A8840-5FAC-4B1E-859F-6CF95B30F373} = {62F94D0A-B40E-41DD-B7AF-492883564DAF}
+		{1CF2BB40-B0AA-4728-B824-0309A31FC5FC} = {71F9FD02-0088-4C62-A747-70599529E6E4}
+		{565D3B6B-6266-4325-8133-0EFBDF2200BE} = {4C6857A0-B2D9-4ABD-87B7-78F5F899BA9C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C3FA6A3-DD0F-4FC0-A248-4A82150E8F6C}
+	EndGlobalSection
+EndGlobal

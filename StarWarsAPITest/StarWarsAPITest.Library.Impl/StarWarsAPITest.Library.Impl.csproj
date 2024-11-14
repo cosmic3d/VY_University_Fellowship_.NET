@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StarWarsAPITest.Domain.Models\StarWarsAPITest.Domain.Models.csproj" />
+    <ProjectReference Include="..\StarWarsAPITest.Infrastructure.Contracts\StarWarsAPITest.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\StarWarsAPITest.Infrastructure.Impl\StarWarsAPITest.Infrastructure.Impl.csproj" />
+    <ProjectReference Include="..\StarWarsAPITest.Library.Contracts\StarWarsAPITest.Library.Contracts.csproj" />
+    <ProjectReference Include="..\StarWarsAPITest.XCutting.Enums\StarWarsAPITest.XCutting.Enums.csproj" />
+  </ItemGroup>
+
+</Project>
