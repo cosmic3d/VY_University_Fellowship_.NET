@@ -1,0 +1,58 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "UniversityDBContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": "DBContext",
+   "OutputPath": "DBEntities",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "UniversitiesAPI.Infrastructure.Contracts",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[University]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UniversityDomain]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UniversityPage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UniversityWebPage]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

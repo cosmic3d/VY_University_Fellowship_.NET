@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UniversitiesAPI.Domain.Models\UniversitiesAPI.Domain.Impl.csproj" />
+    <ProjectReference Include="..\UniversitiesAPI.Infrastructure.Contracts\UniversitiesAPI.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\UniversitiesAPI.Infrastructure.Impl\UniversitiesAPI.Infrastructure.Impl.csproj" />
+    <ProjectReference Include="..\UniversitiesAPI.Library.Contracts\UniversitiesAPI.Library.Contracts.csproj" />
+    <ProjectReference Include="..\UniversitiesAPI.XCutting.Enums\UniversitiesAPI.XCutting.Enums.csproj" />
+  </ItemGroup>
+
+</Project>
