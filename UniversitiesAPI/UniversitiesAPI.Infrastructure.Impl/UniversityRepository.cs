@@ -16,47 +16,8 @@ namespace UniversitiesAPI.Infrastructure.Impl
         private UniversityPage MigrateFromAPI2DBUpdate(List<UniversityEntity> universities)
         {
             UniversityPage universityPageDB = _dbContext.UniversityPage.First();
-            int index = 0;
-            foreach (UniversityEntity university in universities)
-            {
-                Console.WriteLine($"Trying to add {index}. {university.Name}");
-                if (_dbContext.University.Any(x => x.Name.ToLower() == university.Name.ToLower())) continue;
-                Console.WriteLine($"Adding {index}. {university.Name}");
-                index++;
-                University universityDB = new University()
-                {
-                    Name = university.Name,
-                    AlphaTwoCode = university.Alpha_two_code,
-                    StateProvince = university.Stateprovince,
-                    Country = university.Country,
-                    Deleted = false,
-                };
-                if (university.Domains != null)
-                {
-                    foreach (string universityDomain in university.Domains)
-                    {
-                        if (_dbContext.UniversityDomain.Any(x => x.Domain.ToLower() == universityDomain.ToLower())) continue;
-                        universityDB.UniversityDomain.Add(new UniversityDomain()
-                        {
-                            Domain = universityDomain,
-                        });
-                    }
-                }
-                if (university.Web_pages != null)
-                {
-                    foreach (string universityWeb in university.Web_pages)
-                    {
-                        if (_dbContext.UniversityWebPage.Any(x => x.WebPage.ToLower() == universityWeb.ToLower())) continue;
-                        universityDB.UniversityWebPage.Add(new UniversityWebPage()
-                        {
-                            WebPage = universityWeb,
-                        });
-                    }
-                }
-                universityPageDB.University.Add(universityDB);
-            }
-            universityPageDB.Count = universityPageDB.University.Count;
-            return universityPageDB;
+            _dbContext.Remove(universityPageDB);
+            return MigrateFromAPI2DBFirstTime(universities);
         }
         private UniversityPage MigrateFromAPI2DBFirstTime(List<UniversityEntity> universities)
         {

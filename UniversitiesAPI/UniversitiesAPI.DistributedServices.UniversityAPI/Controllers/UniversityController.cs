@@ -18,9 +18,9 @@ namespace UniversitiesAPI.DistributedServices.UniversityAPI.Controllers
             _service = service;
         }
         [HttpGet("MigrateFromAPI2DB")]
-        public ActionResult<UniversityMigrationDto> MigrateFromAPI2DB()
+        public async Task<ActionResult<UniversityMigrationDto>> MigrateFromAPI2DB()
         {
-            UniversityMigrationDto response = _service.ExecuteMigrationFromAPI2DB();
+            UniversityMigrationDto response = await _service.ExecuteMigrationFromAPI2DB();
             if (response.HasErrors) return BadRequest(response.ErrorMsg);
             return Ok(response);
         }

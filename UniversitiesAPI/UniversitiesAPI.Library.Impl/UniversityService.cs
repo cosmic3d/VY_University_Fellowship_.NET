@@ -16,12 +16,12 @@ namespace UniversitiesAPI.Library.Impl
             _repository = repository;
         }
 
-        public UniversityMigrationDto ExecuteMigrationFromAPI2DB()
+        public async Task<UniversityMigrationDto> ExecuteMigrationFromAPI2DB()
         {
             UniversityMigrationDto dto = new();
             try
             {
-                dto.MigratedUniversitiesCount = _repository.UniversityMigrationFromAPI2DB().Result;
+                dto.MigratedUniversitiesCount = await _repository.UniversityMigrationFromAPI2DB();
             }
             catch (Exception ex)
             {

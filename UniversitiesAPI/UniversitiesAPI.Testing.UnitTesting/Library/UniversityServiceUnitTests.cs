@@ -196,7 +196,6 @@ namespace UniversitiesAPI.Testing.UnitTesting.Library
             Assert.NotNull(result);
             Assert.True(result.HasErrors);
             Assert.Null(result.Universities);
-            Assert.Empty(result.Universities);
             Assert.Equal(UniversityEnumError.InvalidStringParameter, result.Error);
         }
 
@@ -220,7 +219,6 @@ namespace UniversitiesAPI.Testing.UnitTesting.Library
             Assert.NotNull(result);
             Assert.True(result.HasErrors);
             Assert.Null(result.Universities);
-            Assert.Empty(result.Universities);
             Assert.Equal(UniversityEnumError.UnexpectedError, result.Error);
         }
         #endregion
